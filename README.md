@@ -26,7 +26,7 @@ python3 scripts/check_site.py
 
 Воркфлоу [`.github/workflows/pages.yml`](.github/workflows/pages.yml) на кожен push у `main` публікує корінь репозиторію. На pull request запускається лише перевірка файлів, без деплою.
 
-1. У репозиторії: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+1. Перший push у `main` увімкне Pages (джерело — GitHub Actions), якщо сайт ще не увімкнений. Перевірте **Settings → Pages**: Source має бути GitHub Actions.
 2. Файл [`CNAME`](CNAME) містить `burcob.online`. Для деплою через Actions все одно вкажіть цей домен у **Settings → Pages → Custom domain** і увімкніть **Enforce HTTPS**, коли сертифікат буде готовий.
 3. DNS у реєстратора (актуальні адреси — у [документації GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)):
 
