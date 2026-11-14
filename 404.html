@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сторінку не знайдено — BurCob</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f3eee6">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("burcob-theme");
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {}
+    })();
+  </script>
+</head>
+<body>
+  <main class="page-404">
+    <div class="card">
+      <p class="kicker">404</p>
+      <h1>Такої сторінки немає</h1>
+      <p class="lede">Поверніться на головну BurCob або напишіть у Telegram.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="index.html">На головну</a>
+        <a class="btn btn-ghost" href="https://t.me/tony_kobs">Telegram</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

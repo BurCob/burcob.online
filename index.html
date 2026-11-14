@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BurCob — лендінги, адмінки, автоматизація та інтеграції</title>
+  <meta name="description" content="Студія BurCob: лендінги й сайти, адмінпанелі, автоматизація заявок та інтеграції з оплатою, CRM і Telegram. Пакети з ціною «від», передоплата 50%.">
+  <meta name="author" content="BurCob">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f3eee6">
+  <link rel="canonical" href="https://burcob.online/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:site_name" content="BurCob">
+  <meta property="og:title" content="BurCob — лендінги, адмінки, автоматизація та інтеграції">
+  <meta property="og:description" content="Студія BurCob: лендінги й сайти, адмінпанелі, автоматизація заявок та інтеграції з оплатою, CRM і Telegram. Пакети з ціною «від», передоплата 50%.">
+  <meta property="og:url" content="https://burcob.online/">
+  <meta property="og:image" content="https://burcob.online/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BurCob — лендінги, адмінки й автоматизація">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BurCob — лендінги, адмінки, автоматизація та інтеграції">
+  <meta name="twitter:description" content="Студія BurCob: лендінги й сайти, адмінпанелі, автоматизація заявок та інтеграції з оплатою, CRM і Telegram.">
+  <meta name="twitter:image" content="https://burcob.online/assets/og.jpg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("burcob-theme");
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#10161e" : "#f3eee6");
+      } catch (error) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "BurCob",
+    "url": "https://burcob.online/",
+    "image": "https://burcob.online/assets/og.jpg",
+    "description": "Студія випускників GoIT: лендінги, адмінпанелі, автоматизація бізнесу та інтеграції.",
+    "knowsLanguage": "uk",
+    "sameAs": [
+      "https://github.com/BurCob",
+      "https://t.me/tony_kobs",
+      "https://kanban.burcob.online"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#zmist">До змісту</a>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <img src="assets/logo.webp" alt="" width="640" height="640">
+        <span>BurCob</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Розділи сторінки">
+        <a href="#poslugy">Послуги</a>
+        <a href="#zayavka">Заявка</a>
+        <a href="#chomu">Чому ми</a>
+        <a href="#proces">Процес</a>
+        <a href="#keis">Кейс</a>
+        <a href="#komanda">Команда</a>
+      </nav>
+      <div class="header-tools">
+        <a class="btn btn-primary header-cta" href="#zayavka">Заявка</a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Увімкнути темну тему">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path>
+          </svg>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only">Меню</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="zmist">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">Студія випускників GoIT</p>
+          <h1>Лендінги, адмінки й автоматизація заявок</h1>
+          <p class="lede">BurCob — це Антон Кобись і Валентин. Верстаємо лендінги й невеликі сайти, збираємо адмінпанелі до того, що вже працює, і зв’язуємо заявки з таблицями, CRM, оплатою та Telegram.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#zayavka">Залишити заявку</a>
+            <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Написати в Telegram</a>
+          </div>
+          <ul class="chips">
+            <li>Ціна «від» після короткого брифу</li>
+            <li>Передоплата 50%</li>
+            <li>14 днів дрібних правок</li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <div class="seal">
+            <img src="assets/logo.webp" width="640" height="640" alt="Логотип BurCob: оригамі-птах кобчик" fetchpriority="high" decoding="async">
+          </div>
+          <aside class="slip" aria-label="Стартові ціни">
+            <h2>Пакети «від»</h2>
+            <ol>
+              <li><span>Лендінг</span> <strong>5&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Адмінка</span> <strong>9&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Автоматизація</span> <strong>4&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Інтеграція</span> <strong>5&nbsp;000&nbsp;₴</strong></li>
+            </ol>
+            <a href="#poslugy">Усі пакети</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="poslugy">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Послуги</p>
+          <h2>Чотири напрями, у кожному три пакети</h2>
+          <p>Що входить, термін і ціна «від». Точну суму фіксуємо після короткого брифу. Орієнтир курсу: 1&nbsp;USD ≈ 45&nbsp;₴ (НБУ, листопад 2026).</p>
+        </div>
+
+        <article class="service" id="verstka">
+          <div class="service-head">
+            <span class="idx">01</span>
+            <div>
+              <h3>Верстка та лендінги</h3>
+              <p>Сторінка або невеликий сайт за вашим макетом чи простим шаблоном.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Верстка та лендінги" data-package="Старт" data-price="від 5 000 ₴" data-usd="~$110" data-time="5–7 днів">
+              <header>
+                <h4>Старт</h4>
+                <p class="time">5–7 днів</p>
+              </header>
+              <p class="price"><span class="sum">від 5&nbsp;000&nbsp;₴</span> <span class="usd">~$110</span></p>
+              <p class="desc">Лендінг 5–8 блоків за макетом (Figma) або простий шаблон, адаптив, форма заявки в Telegram/email.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Верстка та лендінги" data-package="Бізнес" data-price="від 9 000 ₴" data-usd="~$200" data-time="7–14 днів">
+              <header>
+                <h4>Бізнес</h4>
+                <p class="time">7–14 днів</p>
+              </header>
+              <p class="price"><span class="sum">від 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">Лендінг 8–12 блоків або сайт-візитка до 5 сторінок, базова анімація, аналітика (GA4 / Meta Pixel).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Верстка та лендінги" data-package="Розширений" data-price="від 16 000 ₴" data-usd="~$355" data-time="2–3 тижні">
+              <header>
+                <h4>Розширений</h4>
+                <p class="time">2–3 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 16&nbsp;000&nbsp;₴</span> <span class="usd">~$355</span></p>
+              <p class="desc">Багатосторінковий сайт, редагування контенту, квіз або калькулятор, базова SEO-розмітка.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="admin">
+          <div class="service-head">
+            <span class="idx">02</span>
+            <div>
+              <h3>Адмінпанелі для наявного сайту</h3>
+              <p>Кабінет до сайту, який уже є: списки, форми, ролі.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Адмінпанелі для наявного сайту" data-package="Старт" data-price="від 9 000 ₴" data-usd="~$200" data-time="1–2 тижні">
+              <header>
+                <h4>Старт</h4>
+                <p class="time">1–2 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">Авторизація, списки й форми (CRUD) для 1–2 сутностей, адаптив під десктоп.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Адмінпанелі для наявного сайту" data-package="Бізнес" data-price="від 12 000 ₴" data-usd="~$265" data-time="2–3 тижні">
+              <header>
+                <h4>Бізнес</h4>
+                <p class="time">2–3 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 12&nbsp;000&nbsp;₴</span> <span class="usd">~$265</span></p>
+              <p class="desc">Фільтри й пошук, ролі (адмін / оператор), експорт у CSV/Excel.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Адмінпанелі для наявного сайту" data-package="Розширена" data-price="від 22 000 ₴" data-usd="~$490" data-time="3–5 тижнів">
+              <header>
+                <h4>Розширена</h4>
+                <p class="time">3–5 тижнів</p>
+              </header>
+              <p class="price"><span class="sum">від 22&nbsp;000&nbsp;₴</span> <span class="usd">~$490</span></p>
+              <p class="desc">Дашборд із ключовими показниками, журнал змін, підключення до вашого API чи бази.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="avtomatyzatsiia">
+          <div class="service-head">
+            <span class="idx">03</span>
+            <div>
+              <h3>Автоматизація бізнесу</h3>
+              <p>Ланцюжки заявок і сповіщень на n8n, Make або скрипті.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Автоматизація бізнесу" data-package="Старт" data-price="від 4 000 ₴" data-usd="~$90" data-time="3–5 днів">
+              <header>
+                <h4>Старт</h4>
+                <p class="time">3–5 днів</p>
+              </header>
+              <p class="price"><span class="sum">від 4&nbsp;000&nbsp;₴</span> <span class="usd">~$90</span></p>
+              <p class="desc">Один ланцюжок: заявка з сайту чи форми → Google Таблиця або Telegram.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Автоматизація бізнесу" data-package="Бізнес" data-price="від 8 000 ₴" data-usd="~$180" data-time="1–2 тижні">
+              <header>
+                <h4>Бізнес</h4>
+                <p class="time">1–2 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 8&nbsp;000&nbsp;₴</span> <span class="usd">~$180</span></p>
+              <p class="desc">2–3 процеси, сповіщення команді, базова обробка помилок (n8n, Make або скрипт).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Автоматизація бізнесу" data-package="Розширена" data-price="від 14 000 ₴" data-usd="~$310" data-time="2–3 тижні">
+              <header>
+                <h4>Розширена</h4>
+                <p class="time">2–3 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 14&nbsp;000&nbsp;₴</span> <span class="usd">~$310</span></p>
+              <p class="desc">Кілька систем у зв’язці, черги повторних спроб, простий адмін-доступ до сценаріїв.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="intehratsii">
+          <div class="service-head">
+            <span class="idx">04</span>
+            <div>
+              <h3>Інтеграції</h3>
+              <p>Оплата, CRM, Telegram або кілька API в одній зв’язці.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Інтеграції" data-package="Старт" data-price="від 5 000 ₴" data-usd="~$110" data-time="5–7 днів">
+              <header>
+                <h4>Старт</h4>
+                <p class="time">5–7 днів</p>
+              </header>
+              <p class="price"><span class="sum">від 5&nbsp;000&nbsp;₴</span> <span class="usd">~$110</span></p>
+              <p class="desc">Одна інтеграція: monobank / LiqPay / інша оплата або заявка в CRM / Telegram.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Інтеграції" data-package="Бізнес" data-price="від 9 000 ₴" data-usd="~$200" data-time="1–2 тижні">
+              <header>
+                <h4>Бізнес</h4>
+                <p class="time">1–2 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">Бот заявок + запис у CRM чи таблицю, або оплата зі зміною статусу замовлення.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+            <article class="package" data-service="Інтеграції" data-package="Розширена" data-price="від 16 000 ₴" data-usd="~$355" data-time="2–4 тижні">
+              <header>
+                <h4>Розширена</h4>
+                <p class="time">2–4 тижні</p>
+              </header>
+              <p class="price"><span class="sum">від 16&nbsp;000&nbsp;₴</span> <span class="usd">~$355</span></p>
+              <p class="desc">Бот із каталогом і оплатою, або кілька API (CRM + платежі + повідомлення).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Обрати</button>
+            </article>
+          </div>
+        </article>
+
+        <aside class="exclusions">
+          <h3>Що не входить у ціну</h3>
+          <ul>
+            <li>Складний дизайн і брендинг з нуля, логотип, повний копірайтинг. Клієнт дає макет і тексти — або оцінюємо окремо.</li>
+            <li>Домен, хостинг, VPS, SSL і платні тарифи CRM, платіжок, n8n/Make.</li>
+            <li>Реклама, SMM, наповнення великим обсягом контенту.</li>
+            <li>Мобільні застосунки та інтеграції з 1С / BAS без відкритого API й документації.</li>
+            <li>Підтримка після гарантійного періоду: 14 днів дрібних правок після здачі.</li>
+          </ul>
+          <p class="fine">Дрібні доробки поза пакетом — від 400&nbsp;₴/год (~$9). Передоплата 50%, решта після приймання. Ціни орієнтовні, «від». Це не публічна оферта.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="zayavka">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Заявка</p>
+          <h2>Оберіть послугу й пакет — і коротко напишіть задачу</h2>
+          <p>Три кроки. Заявка потрапляє в нашу таблицю. Якщо форма не відповість, є Telegram.</p>
+        </div>
+        <div class="funnel">
+          <form id="lead-form" novalidate>
+            <ol class="progress">
+              <li><button type="button" data-goto="1">1. Послуга</button></li>
+              <li><button type="button" data-goto="2">2. Пакет</button></li>
+              <li><button type="button" data-goto="3">3. Контакт</button></li>
+            </ol>
+
+            <div class="step" data-step="1">
+              <h3 tabindex="-1">Яка послуга потрібна?</h3>
+              <p>Можна обрати напрям зараз або написати, що ще не визначились. <a href="#poslugy">Порівняти всі пакети</a></p>
+              <div class="choices" id="choice-service"></div>
+              <p class="step-error" role="alert"></p>
+            </div>
+
+            <div class="step" data-step="2" hidden>
+              <h3 tabindex="-1">Який пакет ближчий за обсягом?</h3>
+              <p>Це орієнтир «від», не фінальний рахунок. Точну суму зафіксуємо після брифу.</p>
+              <div class="choices" id="choice-package"></div>
+              <p class="step-error" role="alert"></p>
+            </div>
+
+            <div class="step" data-step="3" hidden>
+              <h3 tabindex="-1">Як з вами зв’язатися?</h3>
+              <p>Напишіть Telegram, телефон або email — відповімо туди.</p>
+              <div class="form-grid">
+                <div class="form-row">
+                  <div class="field">
+                    <label for="lead-name">Ім’я</label>
+                    <input id="lead-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+                    <p class="error" id="lead-name-error"></p>
+                  </div>
+                  <div class="field">
+                    <label for="lead-contact">Telegram, телефон або email</label>
+                    <input id="lead-contact" name="contact" type="text" autocomplete="on" inputmode="text" maxlength="120" placeholder="@telegram, +380… або пошта" required>
+                    <p class="error" id="lead-contact-error"></p>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="field">
+                    <label for="lead-service">Послуга</label>
+                    <select id="lead-service" name="service" required></select>
+                    <p class="error" id="lead-service-error"></p>
+                  </div>
+                  <div class="field">
+                    <label for="lead-package">Пакет і бюджет</label>
+                    <select id="lead-package" name="package" required></select>
+                    <p class="error" id="lead-package-error"></p>
+                  </div>
+                </div>
+                <p class="budget-line" id="budget-line">Бюджет з’явиться після вибору пакета.</p>
+                <div class="field">
+                  <label for="lead-task">Коротко про задачу</label>
+                  <textarea id="lead-task" name="task" maxlength="2000" required placeholder="Що вже є, що має з’явитися, до якої дати потрібно."></textarea>
+                  <p class="error" id="lead-task-error"></p>
+                </div>
+                <div class="field">
+                  <label class="check" for="lead-consent">
+                    <input id="lead-consent" name="consent" type="checkbox" value="так" required>
+                    <span>Погоджуюсь, щоб BurCob зберіг ці дані й зв’язався зі мною щодо заявки.</span>
+                  </label>
+                  <p class="error" id="lead-consent-error"></p>
+                </div>
+                <p class="fine">Ім’я, контакт і опис задачі потрібні лише щоб відповісти. Інших розсилок із цієї форми немає.</p>
+              </div>
+            </div>
+
+            <div class="hp" aria-hidden="true">
+              <label for="company_url">Сайт компанії</label>
+              <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="funnel-nav">
+              <button class="btn btn-ghost" id="funnel-back" type="button">Назад</button>
+              <button class="btn btn-primary" id="funnel-next" type="button">Далі</button>
+              <button class="btn btn-primary" id="lead-submit" type="submit" hidden>Надіслати заявку</button>
+            </div>
+          </form>
+
+          <div class="banner" id="form-success" hidden tabindex="-1">
+            <h3>Дякуємо</h3>
+            <p>Заявку записали. Зв’яжемося за контактом, який ви залишили.</p>
+          </div>
+          <div class="banner is-error" id="form-error" role="alert" hidden>
+            <p></p>
+            <a class="btn btn-primary" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Написати в Telegram</a>
+          </div>
+          <p class="sr-only" id="form-status" role="status"></p>
+          <noscript>
+            <p>Щоб надіслати заявку з цієї форми, увімкніть JavaScript. Або напишіть у <a href="https://t.me/tony_kobs">Telegram</a>.</p>
+          </noscript>
+        </div>
+        <iframe name="lead-frame" id="lead-frame" hidden title="Службова відповідь форми" tabindex="-1"></iframe>
+      </div>
+    </section>
+
+    <section class="section" id="chomu">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Чому ми</p>
+          <h2>Невелика студія, без зайвих обіцянок</h2>
+          <p>Ми не збираємо відгуки на цій сторінці й не називаємо чужі цифри. Нижче — те, як влаштована робота.</p>
+        </div>
+        <div class="reasons">
+          <article class="reason">
+            <h3>Говорите з тими, хто робить</h3>
+            <p>Антон і Валентин ведуть задачу від брифу до здачі. Окремого менеджера між вами і роботою немає.</p>
+          </article>
+          <article class="reason">
+            <h3>Пакети видно до старту</h3>
+            <p>Є обсяг, термін і ціна «від». Точну суму фіксуємо після короткого брифу, а не ховаємо її до кінця.</p>
+          </article>
+          <article class="reason">
+            <h3>Оплата навпіл</h3>
+            <p>Передоплата 50%, решта після приймання. Дрібні доробки поза пакетом — від 400&nbsp;₴/год.</p>
+          </article>
+          <article class="reason">
+            <h3>14 днів на дрібні правки</h3>
+            <p>Після здачі є гарантійний період на дрібні правки в межах узгодженого обсягу.</p>
+          </article>
+          <article class="reason">
+            <h3>Одразу кажемо, чого не беремо</h3>
+            <p>Брендинг з нуля, реклама, мобільні застосунки й 1С без відкритого API — окремо або не наша робота. Так і пишемо в пакетах.</p>
+          </article>
+          <article class="reason">
+            <h3>Є власний продукт</h3>
+            <p>Канбан BurCob — живий сервіс команди. Його можна підключити до заявок і статусів, умови доступу узгоджуємо окремо.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proces">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Як працюємо</p>
+          <h2>Шість кроків від брифу до правок</h2>
+        </div>
+        <ol class="process">
+          <li class="process-step">
+            <span class="n">01</span>
+            <h3>Бриф</h3>
+            <p>Розповідаєте, що вже є і який результат потрібен. Форма на цій сторінці або Telegram.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">02</span>
+            <h3>Оцінка</h3>
+            <p>Обираємо пакет або рахуємо поза ним. Фіксуємо обсяг, термін і ціну.</p>
+          </li>
+          <li class="process-step is-key">
+            <span class="n">03</span>
+            <h3>Передоплата 50%</h3>
+            <p>Після неї беремо задачу в роботу. Решту сплачуєте після приймання.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">04</span>
+            <h3>Робота</h3>
+            <p>Робимо в межах узгодженого обсягу. Нові побажання поза ним оцінюємо окремо.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">05</span>
+            <h3>Приймання</h3>
+            <p>Передаємо результат. Ви перевіряєте й сплачуєте решту.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">06</span>
+            <h3>14 днів</h3>
+            <p>Дрібні правки після здачі — у межах гарантії. Далі підтримка узгоджується окремо.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="keis">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Наш продукт</p>
+          <h2>BurCob Kanban</h2>
+        </div>
+        <div class="case-layout">
+          <div class="case-copy">
+            <p>Українська канбан-дошка для командної роботи: задачі, облік часу, оплата й API для ботів в одному сервісі. Три вигляди — дошка, календар з українськими святами й список.</p>
+            <p class="fine">Можна підключити до процесів клієнта: заявки, статуси, командна робота. Умови доступу узгоджуємо окремо.</p>
+            <a class="btn btn-primary" href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">Відкрити kanban.burcob.online</a>
+          </div>
+          <div class="shots">
+            <figure class="shot">
+              <img src="assets/kanban-doshka.jpg" width="1400" height="782" alt="BurCob Kanban: дошка демо-проєкту «Запуск інтернет-магазину» з колонками завдань" loading="lazy" decoding="async">
+              <figcaption>Дошка з колонками</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="assets/kanban-kartka.jpg" width="1400" height="782" alt="BurCob Kanban: картка завдання з описом, чеклістом, мітками, пріоритетом і терміном" loading="lazy" decoding="async">
+              <figcaption>Картка завдання</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="komanda">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Команда</p>
+          <h2>Хто робить</h2>
+          <p>Антон Кобись і Валентин — випускники GoIT. Студія невелика: задачу ведемо самі.</p>
+        </div>
+        <div class="team-grid">
+          <article class="person">
+            <div class="mark" aria-hidden="true">АК</div>
+            <h3>Антон Кобись</h3>
+            <p>Випускник GoIT. З ним можна написати в Telegram щодо заявки.</p>
+            <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">t.me/tony_kobs</a>
+          </article>
+          <article class="person">
+            <div class="mark" aria-hidden="true">В</div>
+            <h3>Валентин</h3>
+            <p>Випускник GoIT. Разом з Антоном веде студію BurCob.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakty">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Контакти</p>
+          <h2>Куди писати</h2>
+          <p>Найшвидше — Telegram. Заявку з пакетом можна лишити формою вище.</p>
+        </div>
+        <div class="contact-list">
+          <a class="contact-card" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">
+            <h3>Telegram</h3>
+            <p>Написати Антону щодо задачі.</p>
+            <span>t.me/tony_kobs</span>
+          </a>
+          <a class="contact-card" href="https://github.com/BurCob" target="_blank" rel="noopener noreferrer">
+            <h3>GitHub</h3>
+            <p>Організація BurCob.</p>
+            <span>github.com/BurCob</span>
+          </a>
+          <a class="contact-card" href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">
+            <h3>Канбан</h3>
+            <p>Окремий продукт студії.</p>
+            <span>kanban.burcob.online</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 BurCob. Лендінги, адмінки, автоматизація, інтеграції. Не публічна оферта.</p>
+      <nav aria-label="Контакти в підвалі">
+        <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://github.com/BurCob" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">Канбан</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

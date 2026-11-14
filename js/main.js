@@ -1,0 +1,545 @@
+(function () {
+  var SCRIPT_URL_RE = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
+  var UNSURE = {
+    name: "Ще не визначились",
+    packages: [
+      {
+        name: "Після брифу",
+        price: "узгодимо після брифу",
+        usd: "",
+        time: "після розмови",
+        summary: "Коротко опишете задачу — запропонуємо пакет або оцінку поза пакетом."
+      }
+    ]
+  };
+
+  var state = {
+    step: 1,
+    maxReached: 1,
+    service: "",
+    packageName: "",
+    sending: false
+  };
+
+  var services = readCatalog();
+  var form = document.getElementById("lead-form");
+  var serviceSelect = document.getElementById("lead-service");
+  var packageSelect = document.getElementById("lead-package");
+
+  initTheme();
+  initNav();
+  initHeader();
+  initCatalog();
+  initFunnel();
+
+  function readCatalog() {
+    var order = [];
+    var map = {};
+    document.querySelectorAll(".package").forEach(function (card) {
+      var name = card.dataset.service;
+      if (!map[name]) {
+        map[name] = [];
+        order.push(name);
+      }
+      map[name].push({
+        name: card.dataset.package,
+        price: card.dataset.price,
+        usd: card.dataset.usd || "",
+        time: card.dataset.time,
+        summary: card.querySelector(".desc").textContent.trim()
+      });
+    });
+    return order.map(function (name) {
+      return { name: name, packages: map[name] };
+    }).concat([UNSURE]);
+  }
+
+  function serviceByName(name) {
+    return services.filter(function (item) { return item.name === name; })[0] || null;
+  }
+
+  function packageByName(serviceName, packageName) {
+    var service = serviceByName(serviceName);
+    if (!service) return null;
+    return service.packages.filter(function (item) { return item.name === packageName; })[0] || null;
+  }
+
+  function initTheme() {
+    var button = document.getElementById("theme-toggle");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("burcob-theme", next); } catch (error) {}
+      updateThemeLabel();
+    });
+    updateThemeLabel();
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    if (media.addEventListener) {
+      media.addEventListener("change", function (event) {
+        var stored = "";
+        try { stored = localStorage.getItem("burcob-theme") || ""; } catch (error) {}
+        if (stored === "light" || stored === "dark") return;
+        document.documentElement.setAttribute("data-theme", event.matches ? "dark" : "light");
+        updateThemeLabel();
+      });
+    }
+  }
+
+  function updateThemeLabel() {
+    var button = document.getElementById("theme-toggle");
+    if (!button) return;
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    button.setAttribute("aria-label", dark ? "Увімкнути світлу тему" : "Увімкнути темну тему");
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", dark ? "#10161e" : "#f3eee6");
+  }
+
+  function initNav() {
+    var toggle = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (!toggle || !nav) return;
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeNav();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeNav();
+    });
+  }
+
+  function closeNav() {
+    var toggle = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (!nav) return;
+    nav.classList.remove("is-open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+
+  function initHeader() {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+    var onScroll = function () {
+      header.classList.toggle("is-stuck", window.scrollY > 4);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  function initCatalog() {
+    var root = document.getElementById("poslugy");
+    if (!root) return;
+    root.addEventListener("click", function (event) {
+      var button = event.target.closest("[data-choose]");
+      if (!button) return;
+      var card = button.closest(".package");
+      choose(card.dataset.service, card.dataset.package, true);
+    });
+  }
+
+  function initFunnel() {
+    fillServiceSelect();
+    renderStep(1);
+    document.getElementById("choice-service").addEventListener("click", function (event) {
+      var button = event.target.closest(".choice");
+      if (!button) return;
+      state.service = button.dataset.value;
+      state.packageName = "";
+      syncSelects();
+      renderStep(state.step);
+      clearStepError();
+    });
+    document.getElementById("choice-package").addEventListener("click", function (event) {
+      var button = event.target.closest(".choice");
+      if (!button) return;
+      state.packageName = button.dataset.value;
+      syncSelects();
+      renderStep(state.step);
+      clearStepError();
+    });
+    document.getElementById("funnel-back").addEventListener("click", function () {
+      if (state.step > 1) renderStep(state.step - 1);
+    });
+    document.getElementById("funnel-next").addEventListener("click", function () {
+      if (!validateStep(state.step)) return;
+      state.maxReached = Math.max(state.maxReached, state.step + 1);
+      renderStep(state.step + 1);
+    });
+    document.querySelector(".progress").addEventListener("click", function (event) {
+      var button = event.target.closest("[data-goto]");
+      if (!button || button.disabled) return;
+      renderStep(Number(button.dataset.goto));
+    });
+    serviceSelect.addEventListener("change", function () {
+      state.service = serviceSelect.value;
+      state.packageName = "";
+      fillPackageSelect();
+      updateBudget();
+      renderChoices();
+    });
+    packageSelect.addEventListener("change", function () {
+      state.packageName = packageSelect.value;
+      updateBudget();
+      renderChoices();
+    });
+    form.addEventListener("submit", onSubmit);
+  }
+
+  function choose(serviceName, packageName, scroll) {
+    hideBanners();
+    form.hidden = false;
+    state.service = serviceName;
+    state.packageName = packageName;
+    state.maxReached = 3;
+    state.sending = false;
+    syncSelects();
+    renderStep(3);
+    if (scroll) {
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById("zayavka").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      window.setTimeout(function () {
+        document.getElementById("lead-name").focus();
+      }, reduced ? 0 : 350);
+    }
+  }
+
+  function renderStep(step) {
+    state.step = step;
+    document.querySelectorAll(".step").forEach(function (panel) {
+      panel.hidden = Number(panel.dataset.step) !== step;
+    });
+    document.querySelectorAll("[data-goto]").forEach(function (button) {
+      var index = Number(button.dataset.goto);
+      button.disabled = index > state.maxReached;
+      if (index === step) button.setAttribute("aria-current", "step");
+      else button.removeAttribute("aria-current");
+    });
+    document.getElementById("funnel-back").hidden = step === 1;
+    document.getElementById("funnel-next").hidden = step === 3;
+    document.getElementById("lead-submit").hidden = step !== 3;
+    renderChoices();
+    clearStepError();
+    var heading = document.querySelector('.step[data-step="' + step + '"] h3');
+    if (heading && document.activeElement && document.activeElement.closest && document.activeElement.closest(".funnel")) {
+      heading.focus();
+    }
+  }
+
+  function renderChoices() {
+    renderChoiceButtons(
+      document.getElementById("choice-service"),
+      services.map(function (service) {
+        var first = service.packages[0];
+        return {
+          value: service.name,
+          title: service.name,
+          meta: service.packages.length > 1 ? first.price + " і далі" : first.price,
+          text: service.packages.length > 1 ? service.packages.length + " пакети" : "Без пакета, після розмови"
+        };
+      }),
+      state.service
+    );
+    var current = serviceByName(state.service);
+    renderChoiceButtons(
+      document.getElementById("choice-package"),
+      current ? current.packages.map(function (item) {
+        return {
+          value: item.name,
+          title: item.name,
+          meta: item.usd ? item.price + " (" + item.usd + ")" : item.price,
+          text: item.time + ". " + item.summary
+        };
+      }) : [],
+      state.packageName
+    );
+    updateBudget();
+  }
+
+  function renderChoiceButtons(container, items, current) {
+    container.replaceChildren();
+    items.forEach(function (item) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "choice";
+      button.dataset.value = item.value;
+      button.setAttribute("aria-pressed", item.value === current ? "true" : "false");
+      var title = document.createElement("span");
+      title.className = "choice-title";
+      title.textContent = item.title;
+      var meta = document.createElement("span");
+      meta.className = "choice-meta";
+      meta.textContent = item.meta;
+      var text = document.createElement("span");
+      text.className = "choice-text";
+      text.textContent = item.text;
+      button.append(title, meta, text);
+      container.appendChild(button);
+    });
+  }
+
+  function fillServiceSelect() {
+    serviceSelect.replaceChildren();
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Оберіть послугу";
+    serviceSelect.appendChild(placeholder);
+    services.forEach(function (service) {
+      var option = document.createElement("option");
+      option.value = service.name;
+      option.textContent = service.name;
+      serviceSelect.appendChild(option);
+    });
+    fillPackageSelect();
+  }
+
+  function fillPackageSelect() {
+    var current = serviceByName(state.service);
+    packageSelect.replaceChildren();
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Оберіть пакет";
+    packageSelect.appendChild(placeholder);
+    if (!current) return;
+    current.packages.forEach(function (item) {
+      var option = document.createElement("option");
+      option.value = item.name;
+      option.textContent = item.name + " · " + item.price;
+      packageSelect.appendChild(option);
+    });
+    packageSelect.value = state.packageName;
+  }
+
+  function syncSelects() {
+    serviceSelect.value = state.service;
+    fillPackageSelect();
+    packageSelect.value = state.packageName;
+    updateBudget();
+  }
+
+  function updateBudget() {
+    var line = document.getElementById("budget-line");
+    var pkg = packageByName(state.service, state.packageName);
+    if (!pkg) {
+      line.textContent = "Бюджет з’явиться після вибору пакета.";
+      return;
+    }
+    line.textContent = "Бюджет: " + (pkg.usd ? pkg.price + " (" + pkg.usd + ")" : pkg.price) + ". Термін: " + pkg.time + ".";
+  }
+
+  function validateStep(step) {
+    if (step === 1 && !state.service) {
+      setStepError("Оберіть послугу.");
+      return false;
+    }
+    if (step === 2 && !state.packageName) {
+      setStepError("Оберіть пакет.");
+      return false;
+    }
+    return true;
+  }
+
+  function setStepError(message) {
+    document.querySelector('.step[data-step="' + state.step + '"] .step-error').textContent = message;
+  }
+
+  function clearStepError() {
+    document.querySelectorAll(".step-error").forEach(function (node) {
+      node.textContent = "";
+    });
+  }
+
+  function onSubmit(event) {
+    event.preventDefault();
+    if (state.sending) return;
+    hideBanners();
+    var name = clean(document.getElementById("lead-name").value);
+    var contact = clean(document.getElementById("lead-contact").value);
+    var task = cleanTask(document.getElementById("lead-task").value);
+    var consent = document.getElementById("lead-consent").checked;
+    var honeypot = document.getElementById("company_url").value.trim();
+    var valid = true;
+
+    valid = setFieldError("lead-name", name.length >= 2 ? "" : "Вкажіть, як до вас звертатися.") && valid;
+    valid = setFieldError("lead-contact", validContact(contact) ? "" : "Вкажіть Telegram, телефон або email.") && valid;
+    valid = setFieldError("lead-service", state.service ? "" : "Оберіть послугу.") && valid;
+    valid = setFieldError("lead-package", state.packageName ? "" : "Оберіть пакет.") && valid;
+    valid = setFieldError("lead-task", task.length >= 10 ? "" : "Опишіть задачу хоча б одним реченням.") && valid;
+    if (task.length > 2000) {
+      valid = setFieldError("lead-task", "Скоротіть опис до 2000 символів.") && valid;
+    }
+    valid = setFieldError("lead-consent", consent ? "" : "Потрібна згода, щоб зв’язатися щодо заявки.") && valid;
+    if (!valid) {
+      var firstInvalid = form.querySelector("[aria-invalid='true']");
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    if (honeypot) {
+      showSuccess();
+      return;
+    }
+
+    var url = scriptUrl();
+    if (url === "") {
+      showError("Заявка з сайту ще не підключена до таблиці. Напишіть у Telegram — так вона точно дійде.");
+      return;
+    }
+    if (url === null) {
+      showError("Адреса форми налаштована некоректно. Напишіть у Telegram — відповімо там.");
+      return;
+    }
+
+    var pkg = packageByName(state.service, state.packageName);
+    var payload = {
+      name: name,
+      contact: contact,
+      service: state.service,
+      package: pkg.name + " · " + pkg.time,
+      budget: pkg.usd ? pkg.price + " (" + pkg.usd + ")" : pkg.price,
+      task: task,
+      consent: "так",
+      company_url: "",
+      page: location.origin + location.pathname,
+      origin: location.origin,
+      nonce: nonce()
+    };
+
+    state.sending = true;
+    var submit = document.getElementById("lead-submit");
+    submit.disabled = true;
+    submit.textContent = "Надсилаємо…";
+    document.getElementById("form-status").textContent = "Надсилаємо заявку…";
+    postLead(url, payload).then(function () {
+      showSuccess();
+    }).catch(function () {
+      document.getElementById("form-status").textContent = "";
+      showError("Не вдалося надіслати заявку з сайту. Напишіть у Telegram — відповімо там.");
+    }).finally(function () {
+      state.sending = false;
+      var submitButton = document.getElementById("lead-submit");
+      submitButton.disabled = false;
+      submitButton.textContent = "Надіслати заявку";
+    });
+  }
+
+  function scriptUrl() {
+    var config = window.BURCOB_CONFIG || {};
+    var url = String(config.GOOGLE_SCRIPT_URL || "").trim();
+    if (!url) return "";
+    return SCRIPT_URL_RE.test(url) ? url : null;
+  }
+
+  function postLead(url, fields) {
+    return new Promise(function (resolve, reject) {
+      var iframe = document.getElementById("lead-frame");
+      var carrier = document.createElement("form");
+      carrier.method = "POST";
+      carrier.action = url;
+      carrier.target = "lead-frame";
+      carrier.acceptCharset = "UTF-8";
+      carrier.hidden = true;
+      Object.keys(fields).forEach(function (key) {
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = fields[key];
+        carrier.appendChild(input);
+      });
+      document.body.appendChild(carrier);
+
+      var timer = window.setTimeout(function () { finish(new Error("timeout")); }, 25000);
+      function onMessage(event) {
+        var data = event.data;
+        if (!data || data.source !== "burcob-lead" || data.nonce !== fields.nonce) return;
+        if (!originAllowed(event.origin)) return;
+        finish(data.ok ? null : new Error(data.error || "rejected"));
+      }
+      function finish(error) {
+        window.clearTimeout(timer);
+        window.removeEventListener("message", onMessage);
+        carrier.remove();
+        if (error) reject(error);
+        else resolve();
+      }
+      window.addEventListener("message", onMessage);
+      iframe.addEventListener("load", function ignore() {}, { once: true });
+      carrier.submit();
+    });
+  }
+
+  function originAllowed(origin) {
+    if (origin === "null" || origin === "") return true;
+    try {
+      var host = new URL(origin).hostname;
+      return host === "script.google.com" ||
+        host === "googleusercontent.com" ||
+        host.endsWith(".googleusercontent.com") ||
+        host === "localhost" ||
+        host === "127.0.0.1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function showSuccess() {
+    form.hidden = true;
+    document.getElementById("form-error").hidden = true;
+    var success = document.getElementById("form-success");
+    success.hidden = false;
+    document.getElementById("form-status").textContent = "Заявку записали.";
+    success.focus();
+  }
+
+  function showError(message) {
+    var box = document.getElementById("form-error");
+    box.querySelector("p").textContent = message;
+    box.hidden = false;
+    document.getElementById("form-success").hidden = true;
+  }
+
+  function hideBanners() {
+    document.getElementById("form-error").hidden = true;
+    document.getElementById("form-success").hidden = true;
+  }
+
+  function setFieldError(id, message) {
+    var field = document.getElementById(id);
+    var error = document.getElementById(id + "-error");
+    if (message) {
+      field.setAttribute("aria-invalid", "true");
+      error.textContent = message;
+      return false;
+    }
+    field.removeAttribute("aria-invalid");
+    error.textContent = "";
+    return true;
+  }
+
+  function validContact(value) {
+    if (value.length < 3 || value.length > 120) return false;
+    if (value.indexOf("@") !== -1 && value.indexOf("t.me/") === -1) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+    if (value.charAt(0) === "@") return /^@[A-Za-z0-9_]{3,}$/.test(value);
+    if (/t\.me\//i.test(value)) return value.length >= 8;
+    var digits = value.replace(/\D/g, "");
+    if (digits.length >= 7 && /^[+\d()\s-]+$/.test(value)) return true;
+    return value.length >= 5;
+  }
+
+  function clean(value) {
+    return String(value || "").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function cleanTask(value) {
+    return String(value || "").replace(/\u0000/g, "").replace(/\r\n/g, "\n").trim();
+  }
+
+  function nonce() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return String(Date.now()) + Math.random().toString(16).slice(2);
+  }
+})();
