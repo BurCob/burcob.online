@@ -8,28 +8,56 @@
   <meta name="author" content="BurCob">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#f3eee6">
-  <link rel="canonical" href="https://burcob.online/">
+  <link rel="canonical" href="https://www.burcob.online/">
+  <link rel="alternate" hreflang="uk" href="https://www.burcob.online/">
+  <link rel="alternate" hreflang="en" href="https://www.burcob.online/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.burcob.online/en/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="uk_UA">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="BurCob">
   <meta property="og:title" content="BurCob — лендінги, адмінки, автоматизація та інтеграції">
   <meta property="og:description" content="Студія BurCob: лендінги й сайти, адмінпанелі, автоматизація заявок та інтеграції з оплатою, CRM і Telegram. Пакети з ціною «від», передоплата 50%.">
-  <meta property="og:url" content="https://burcob.online/">
-  <meta property="og:image" content="https://burcob.online/assets/og.jpg">
+  <meta property="og:url" content="https://www.burcob.online/">
+  <meta property="og:image" content="https://www.burcob.online/assets/og-uk.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="BurCob — лендінги, адмінки й автоматизація">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BurCob — лендінги, адмінки, автоматизація та інтеграції">
   <meta name="twitter:description" content="Студія BurCob: лендінги й сайти, адмінпанелі, автоматизація заявок та інтеграції з оплатою, CRM і Telegram.">
-  <meta name="twitter:image" content="https://burcob.online/assets/og.jpg">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" href="assets/logo.webp" as="image" type="image/webp">
-  <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="twitter:image" content="https://www.burcob.online/assets/og-uk.jpg">
+  <meta name="twitter:image:alt" content="BurCob — лендінги, адмінки й автоматизація">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    (function () {
+      var KEY = "burcob-lang";
+      var here = document.documentElement.lang === "en" ? "en" : "uk";
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved === "uk" || saved === "en") return;
+        var ua = navigator.userAgent || "";
+        if (navigator.webdriver) return;
+        if (/googlebot|adsbot-google|mediapartners-google|bingbot|bingpreview|duckduckbot|baiduspider|yandexbot|slurp|facebookexternalhit|facebot|ia_archiver|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|bytespider|amazonbot|gptbot|chatgpt-user|oai-searchbot|claudebot|anthropic-ai|perplexitybot|applebot|twitterbot|linkedinbot|slackbot|telegrambot|discordbot|pinterestbot|redditbot|embedly|vkshare|w3c_validator|lighthouse|chrome-lighthouse|headlesschrome|google-inspectiontool|seznambot|screaming frog|crawler|spider/i.test(ua)) return;
+        var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+        var target = "en";
+        for (var i = 0; i < list.length; i++) {
+          var code = String(list[i] || "").toLowerCase().split("-")[0];
+          if (code === "uk" || code === "ru") { target = "uk"; break; }
+          if (code === "en") { target = "en"; break; }
+        }
+        localStorage.setItem(KEY, target);
+        if (target !== here) location.replace(target === "en" ? "/en/" : "/");
+      } catch (error) {}
+    })();
+  </script>
   <script>
     (function () {
       try {
@@ -46,16 +74,142 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "BurCob",
-    "url": "https://burcob.online/",
-    "image": "https://burcob.online/assets/og.jpg",
-    "description": "Студія випускників GoIT: лендінги, адмінпанелі, автоматизація бізнесу та інтеграції.",
-    "knowsLanguage": "uk",
-    "sameAs": [
-      "https://github.com/BurCob",
-      "https://t.me/tony_kobs",
-      "https://kanban.burcob.online"
+    "@graph": [
+      {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": "https://www.burcob.online/#organization",
+        "name": "BurCob",
+        "url": "https://www.burcob.online/",
+        "logo": "https://www.burcob.online/assets/logo.webp",
+        "image": "https://www.burcob.online/assets/og-uk.jpg",
+        "description": "Студія випускників GoIT: лендінги, адмінпанелі, автоматизація бізнесу та інтеграції.",
+        "knowsLanguage": ["uk", "en"],
+        "areaServed": "UA",
+        "sameAs": ["https://github.com/BurCob"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://t.me/tony_kobs",
+            "availableLanguage": ["Ukrainian", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://t.me/Groteskzp",
+            "availableLanguage": ["Ukrainian", "English"]
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Послуги BurCob",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Верстка та лендінги",
+                "description": "Сторінка або невеликий сайт за макетом чи простим шаблоном."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Адмінпанелі для наявного сайту",
+                "description": "Кабінет до сайту, який уже є: списки, форми, ролі."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Автоматизація бізнесу",
+                "description": "Ланцюжки заявок і сповіщень на n8n, Make або скрипті."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Інтеграції",
+                "description": "Оплата, CRM, Telegram або кілька API в одній зв’язці."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#mykhailo",
+        "name": "Михайло Максимов",
+        "jobTitle": "Керівник проєкту",
+        "image": "https://www.burcob.online/assets/team/mykhailo.webp",
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#natalia",
+        "name": "Наталія",
+        "jobTitle": "Координатор проєкту",
+        "image": "https://www.burcob.online/assets/team/natalia.webp",
+        "sameAs": ["https://t.me/Narrina", "https://github.com/nataliastepanova"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#anton",
+        "name": "Антон",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/anton.webp",
+        "sameAs": ["https://t.me/tony_kobs", "https://github.com/tony-kobs"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#yuliana",
+        "name": "Юліана",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/yuliana.webp",
+        "sameAs": ["https://t.me/Akanekii", "https://github.com/Yulia2123"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#valeriy",
+        "name": "Валерій",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/valeriy.webp",
+        "sameAs": ["https://t.me/Valerii2268", "https://github.com/ValeriySolod"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#adam",
+        "name": "Adam Lekh",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/adam.webp",
+        "sameAs": ["https://t.me/adampershyi", "https://github.com/AdamPershyi"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#valentyn",
+        "name": "Валентин",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/valentyn.webp",
+        "sameAs": ["https://t.me/Groteskzp", "https://github.com/groteskzp"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#romanna",
+        "name": "Романна Брич",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/romanna.webp",
+        "sameAs": ["https://t.me/romanna_br", "https://github.com/Romanna-Brych"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      }
     ]
   }
   </script>
@@ -65,7 +219,7 @@
   <header class="site-header" id="top">
     <div class="wrap header-inner">
       <a class="brand" href="#top">
-        <img src="assets/logo.webp" alt="" width="640" height="640">
+        <img src="/assets/logo.webp" alt="" width="640" height="640">
         <span>BurCob</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Розділи сторінки">
@@ -75,8 +229,18 @@
         <a href="#proces">Процес</a>
         <a href="#keis">Кейс</a>
         <a href="#komanda">Команда</a>
+        <div class="nav-lang">
+          <nav class="lang-switch" aria-label="Мова">
+            <a href="/" hreflang="uk" lang="uk" data-lang="uk" aria-current="page">UA</a>
+            <a href="/en/" hreflang="en" lang="en" data-lang="en">EN</a>
+          </nav>
+        </div>
       </nav>
       <div class="header-tools">
+        <nav class="lang-switch" aria-label="Мова">
+          <a href="/" hreflang="uk" lang="uk" data-lang="uk" aria-current="page">UA</a>
+          <a href="/en/" hreflang="en" lang="en" data-lang="en">EN</a>
+        </nav>
         <a class="btn btn-primary header-cta" href="#zayavka">Заявка</a>
         <button class="icon-btn" id="theme-toggle" type="button" aria-label="Увімкнути темну тему">
           <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -103,10 +267,11 @@
         <div>
           <p class="kicker">Студія випускників GoIT</p>
           <h1>Лендінги, адмінки й автоматизація заявок</h1>
-          <p class="lede">BurCob — це Антон Кобись і Валентин. Верстаємо лендінги й невеликі сайти, збираємо адмінпанелі до того, що вже працює, і зв’язуємо заявки з таблицями, CRM, оплатою та Telegram.</p>
+          <p class="lede">BurCob робить лендінги й невеликі сайти, збирає адмінпанелі до того, що вже працює, і зв’язує заявки з таблицями, CRM, оплатою та Telegram.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#zayavka">Залишити заявку</a>
-            <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Написати в Telegram</a>
+            <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Антон</a>
+            <a class="btn btn-ghost" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Валентин</a>
           </div>
           <ul class="chips">
             <li>Ціна «від» після короткого брифу</li>
@@ -116,7 +281,7 @@
         </div>
         <div class="hero-art">
           <div class="seal">
-            <img src="assets/logo.webp" width="640" height="640" alt="Логотип BurCob: оригамі-птах кобчик" fetchpriority="high" decoding="async">
+            <img src="/assets/logo.webp" width="640" height="640" alt="Логотип BurCob: оригамі-птах кобчик" fetchpriority="high" decoding="async">
           </div>
           <aside class="slip" aria-label="Стартові ціни">
             <h2>Пакети «від»</h2>
@@ -315,7 +480,7 @@
         <div class="section-head">
           <p class="kicker">Заявка</p>
           <h2>Оберіть послугу й пакет — і коротко напишіть задачу</h2>
-          <p>Три кроки. Заявка потрапляє в нашу таблицю. Якщо форма не відповість, є Telegram.</p>
+          <p>Три кроки. Заявка потрапляє в нашу таблицю. Якщо форма не відповість, напишіть Антону або Валентину в Telegram.</p>
         </div>
         <div class="funnel">
           <form id="lead-form" novalidate>
@@ -402,11 +567,14 @@
           </div>
           <div class="banner is-error" id="form-error" role="alert" hidden>
             <p></p>
-            <a class="btn btn-primary" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Написати в Telegram</a>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Антон</a>
+              <a class="btn btn-ghost" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Валентин</a>
+            </div>
           </div>
           <p class="sr-only" id="form-status" role="status"></p>
           <noscript>
-            <p>Щоб надіслати заявку з цієї форми, увімкніть JavaScript. Або напишіть у <a href="https://t.me/tony_kobs">Telegram</a>.</p>
+            <p>Щоб надіслати заявку з цієї форми, увімкніть JavaScript. Або напишіть <a href="https://t.me/tony_kobs">Антону</a> чи <a href="https://t.me/Groteskzp">Валентину</a> в Telegram.</p>
           </noscript>
         </div>
         <iframe name="lead-frame" id="lead-frame" hidden title="Службова відповідь форми" tabindex="-1"></iframe>
@@ -423,7 +591,7 @@
         <div class="reasons">
           <article class="reason">
             <h3>Говорите з тими, хто робить</h3>
-            <p>Антон і Валентин ведуть задачу від брифу до здачі. Окремого менеджера між вами і роботою немає.</p>
+            <p>Задачу веде команда студії, без окремого менеджера між вами і роботою. Написати можна Антону або Валентину в Telegram.</p>
           </article>
           <article class="reason">
             <h3>Пакети видно до старту</h3>
@@ -504,11 +672,11 @@
           </div>
           <div class="shots">
             <figure class="shot">
-              <img src="assets/kanban-doshka.jpg" width="1400" height="782" alt="BurCob Kanban: дошка демо-проєкту «Запуск інтернет-магазину» з колонками завдань" loading="lazy" decoding="async">
+              <img src="/assets/kanban-doshka.jpg" width="1400" height="782" alt="BurCob Kanban: дошка демо-проєкту «Запуск інтернет-магазину» з колонками завдань" loading="lazy" decoding="async">
               <figcaption>Дошка з колонками</figcaption>
             </figure>
             <figure class="shot">
-              <img src="assets/kanban-kartka.jpg" width="1400" height="782" alt="BurCob Kanban: картка завдання з описом, чеклістом, мітками, пріоритетом і терміном" loading="lazy" decoding="async">
+              <img src="/assets/kanban-kartka.jpg" width="1400" height="782" alt="BurCob Kanban: картка завдання з описом, чеклістом, мітками, пріоритетом і терміном" loading="lazy" decoding="async">
               <figcaption>Картка завдання</figcaption>
             </figure>
           </div>
@@ -521,19 +689,76 @@
         <div class="section-head">
           <p class="kicker">Команда</p>
           <h2>Хто робить</h2>
-          <p>Антон Кобись і Валентин — випускники GoIT. Студія невелика: задачу ведемо самі.</p>
+          <p>Команда BurCob. Щодо заявки напишіть Антону або Валентину в Telegram.</p>
         </div>
         <div class="team-grid">
           <article class="person">
-            <div class="mark" aria-hidden="true">АК</div>
-            <h3>Антон Кобись</h3>
-            <p>Випускник GoIT. З ним можна написати в Telegram щодо заявки.</p>
-            <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">t.me/tony_kobs</a>
+            <img src="/assets/team/mykhailo.webp" width="640" height="800" alt="Портрет Михайла Максимова, керівника проєкту BurCob" loading="lazy" decoding="async">
+            <h3>Михайло Максимов</h3>
+            <p>Керівник проєкту</p>
           </article>
           <article class="person">
-            <div class="mark" aria-hidden="true">В</div>
+            <img src="/assets/team/natalia.webp" width="640" height="800" alt="Портрет Наталії, координаторки проєкту BurCob" loading="lazy" decoding="async">
+            <h3>Наталія</h3>
+            <p>Координатор проєкту</p>
+            <p class="person-links">
+              <a href="https://t.me/Narrina" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Наталії</span></a>
+              <a href="https://github.com/nataliastepanova" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Наталії</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/anton.webp" width="640" height="800" alt="Портрет Антона, fullstack-розробника BurCob" loading="lazy" decoding="async">
+            <h3>Антон</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Антона</span></a>
+              <a href="https://github.com/tony-kobs" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Антона</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/yuliana.webp" width="640" height="800" alt="Портрет Юліани, fullstack-розробниці BurCob" loading="lazy" decoding="async">
+            <h3>Юліана</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Akanekii" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Юліани</span></a>
+              <a href="https://github.com/Yulia2123" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Юліани</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/valeriy.webp" width="640" height="800" alt="Портрет Валерія, fullstack-розробника BurCob" loading="lazy" decoding="async">
+            <h3>Валерій</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Valerii2268" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Валерія</span></a>
+              <a href="https://github.com/ValeriySolod" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Валерія</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/adam.webp" width="640" height="800" alt="Портрет Adam Lekh, fullstack-розробника BurCob" loading="lazy" decoding="async">
+            <h3>Adam Lekh</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/adampershyi" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Adam Lekh</span></a>
+              <a href="https://github.com/AdamPershyi" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Adam Lekh</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/valentyn.webp" width="640" height="800" alt="Портрет Валентина, fullstack-розробника BurCob" loading="lazy" decoding="async">
             <h3>Валентин</h3>
-            <p>Випускник GoIT. Разом з Антоном веде студію BurCob.</p>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Валентина</span></a>
+              <a href="https://github.com/groteskzp" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Валентина</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/romanna.webp" width="640" height="800" alt="Портрет Романни Брич, fullstack-розробниці BurCob" loading="lazy" decoding="async">
+            <h3>Романна Брич</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/romanna_br" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Романни Брич</span></a>
+              <a href="https://github.com/Romanna-Brych" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Романни Брич</span></a>
+            </p>
           </article>
         </div>
       </div>
@@ -544,23 +769,18 @@
         <div class="section-head">
           <p class="kicker">Контакти</p>
           <h2>Куди писати</h2>
-          <p>Найшвидше — Telegram. Заявку з пакетом можна лишити формою вище.</p>
+          <p>Пишемо в Telegram. Заявку з пакетом можна лишити формою вище.</p>
         </div>
         <div class="contact-list">
           <a class="contact-card" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">
-            <h3>Telegram</h3>
-            <p>Написати Антону щодо задачі.</p>
+            <h3>Антон</h3>
+            <p>Написати в Telegram щодо задачі.</p>
             <span>t.me/tony_kobs</span>
           </a>
-          <a class="contact-card" href="https://github.com/BurCob" target="_blank" rel="noopener noreferrer">
-            <h3>GitHub</h3>
-            <p>Організація BurCob.</p>
-            <span>github.com/BurCob</span>
-          </a>
-          <a class="contact-card" href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">
-            <h3>Канбан</h3>
-            <p>Окремий продукт студії.</p>
-            <span>kanban.burcob.online</span>
+          <a class="contact-card" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">
+            <h3>Валентин</h3>
+            <p>Написати в Telegram щодо задачі.</p>
+            <span>t.me/Groteskzp</span>
           </a>
         </div>
       </div>
@@ -571,14 +791,14 @@
     <div class="wrap footer-inner">
       <p>© 2026 BurCob. Лендінги, адмінки, автоматизація, інтеграції. Не публічна оферта.</p>
       <nav aria-label="Контакти в підвалі">
-        <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Антон</a>
+        <a href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Валентин</a>
         <a href="https://github.com/BurCob" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">Канбан</a>
       </nav>
     </div>
   </footer>
 
-  <script src="js/config.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="/js/config.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

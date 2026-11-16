@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://burcob.online/sitemap.xml
+Sitemap: https://www.burcob.online/sitemap.xml

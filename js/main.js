@@ -1,17 +1,94 @@
 (function () {
   var SCRIPT_URL_RE = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
+  var STRINGS = {
+    uk: {
+      themeToLight: "Увімкнути світлу тему",
+      themeToDark: "Увімкнути темну тему",
+      andUp: "і далі",
+      noPackage: "Без пакета, після розмови",
+      packageOne: "пакет",
+      packageFew: "пакети",
+      packageMany: "пакетів",
+      chooseService: "Оберіть послугу",
+      choosePackage: "Оберіть пакет",
+      budgetEmpty: "Бюджет з’явиться після вибору пакета.",
+      budgetPrefix: "Бюджет: ",
+      termPrefix: "Термін: ",
+      errService: "Оберіть послугу.",
+      errPackage: "Оберіть пакет.",
+      errName: "Вкажіть, як до вас звертатися.",
+      errContact: "Вкажіть Telegram, телефон або email.",
+      errTask: "Опишіть задачу хоча б одним реченням.",
+      errTaskLong: "Скоротіть опис до 2000 символів.",
+      errConsent: "Потрібна згода, щоб зв’язатися щодо заявки.",
+      errNoUrl: "Заявка з сайту ще не підключена до таблиці. Напишіть у Telegram — так вона точно дійде.",
+      errBadUrl: "Адреса форми налаштована некоректно. Напишіть у Telegram — відповімо там.",
+      errSend: "Не вдалося надіслати заявку з сайту. Напишіть у Telegram — відповімо там.",
+      sending: "Надсилаємо…",
+      send: "Надіслати заявку",
+      sendingStatus: "Надсилаємо заявку…",
+      savedStatus: "Заявку записали.",
+      consentValue: "так",
+      unsureName: "Ще не визначились",
+      unsurePackage: "Після брифу",
+      unsurePrice: "узгодимо після брифу",
+      unsureTime: "після розмови",
+      unsureSummary: "Коротко опишете задачу — запропонуємо пакет або оцінку поза пакетом."
+    },
+    en: {
+      themeToLight: "Switch to light theme",
+      themeToDark: "Switch to dark theme",
+      andUp: "and up",
+      noPackage: "No package yet, after a call",
+      packageOne: "package",
+      packageFew: "packages",
+      packageMany: "packages",
+      chooseService: "Choose a service",
+      choosePackage: "Choose a package",
+      budgetEmpty: "The budget appears after you choose a package.",
+      budgetPrefix: "Budget: ",
+      termPrefix: "Timeline: ",
+      errService: "Choose a service.",
+      errPackage: "Choose a package.",
+      errName: "Tell us what to call you.",
+      errContact: "Leave a Telegram, phone or email.",
+      errTask: "Describe the task in at least one sentence.",
+      errTaskLong: "Shorten the description to 2000 characters.",
+      errConsent: "Consent is required so we can contact you about the request.",
+      errNoUrl: "The site form is not connected to the spreadsheet yet. Message us on Telegram and it will get through.",
+      errBadUrl: "The form address is misconfigured. Message us on Telegram and we will reply there.",
+      errSend: "The request could not be sent from the site. Message us on Telegram and we will reply there.",
+      sending: "Sending…",
+      send: "Send request",
+      sendingStatus: "Sending the request…",
+      savedStatus: "The request is saved.",
+      consentValue: "yes",
+      unsureName: "Not sure yet",
+      unsurePackage: "After a brief",
+      unsurePrice: "we will confirm after a brief",
+      unsureTime: "after a call",
+      unsureSummary: "Describe the task briefly and we will suggest a package or an estimate outside one."
+    }
+  };
+  var lang = document.documentElement.lang === "en" ? "en" : "uk";
+  var t = STRINGS[lang];
   var UNSURE = {
-    name: "Ще не визначились",
+    name: t.unsureName,
     packages: [
       {
-        name: "Після брифу",
-        price: "узгодимо після брифу",
+        name: t.unsurePackage,
+        price: t.unsurePrice,
         usd: "",
-        time: "після розмови",
-        summary: "Коротко опишете задачу — запропонуємо пакет або оцінку поза пакетом."
+        time: t.unsureTime,
+        summary: t.unsureSummary
       }
     ]
   };
+
+  function packageCountLabel(count) {
+    var word = count === 1 ? t.packageOne : (lang === "uk" && count >= 5 ? t.packageMany : t.packageFew);
+    return count + " " + word;
+  }
 
   var state = {
     step: 1,
@@ -28,6 +105,7 @@
 
   initTheme();
   initNav();
+  initLangSwitch();
   initHeader();
   initCatalog();
   initFunnel();
@@ -90,7 +168,7 @@
     var button = document.getElementById("theme-toggle");
     if (!button) return;
     var dark = document.documentElement.getAttribute("data-theme") === "dark";
-    button.setAttribute("aria-label", dark ? "Увімкнути світлу тему" : "Увімкнути темну тему");
+    button.setAttribute("aria-label", dark ? t.themeToLight : t.themeToDark);
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", dark ? "#10161e" : "#f3eee6");
   }
@@ -117,6 +195,16 @@
     if (!nav) return;
     nav.classList.remove("is-open");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+
+  function initLangSwitch() {
+    document.querySelectorAll("[data-lang]").forEach(function (link) {
+      link.addEventListener("click", function () {
+        try { localStorage.setItem("burcob-lang", link.getAttribute("data-lang")); } catch (error) {}
+        if (!location.hash) return;
+        link.href = new URL(link.getAttribute("href"), location.origin).pathname + location.hash;
+      });
+    });
   }
 
   function initHeader() {
@@ -236,8 +324,8 @@
         return {
           value: service.name,
           title: service.name,
-          meta: service.packages.length > 1 ? first.price + " і далі" : first.price,
-          text: service.packages.length > 1 ? service.packages.length + " пакети" : "Без пакета, після розмови"
+          meta: service.packages.length > 1 ? first.price + " " + t.andUp : first.price,
+          text: service.packages.length > 1 ? packageCountLabel(service.packages.length) : t.noPackage
         };
       }),
       state.service
@@ -284,7 +372,7 @@
     serviceSelect.replaceChildren();
     var placeholder = document.createElement("option");
     placeholder.value = "";
-    placeholder.textContent = "Оберіть послугу";
+    placeholder.textContent = t.chooseService;
     serviceSelect.appendChild(placeholder);
     services.forEach(function (service) {
       var option = document.createElement("option");
@@ -300,7 +388,7 @@
     packageSelect.replaceChildren();
     var placeholder = document.createElement("option");
     placeholder.value = "";
-    placeholder.textContent = "Оберіть пакет";
+    placeholder.textContent = t.choosePackage;
     packageSelect.appendChild(placeholder);
     if (!current) return;
     current.packages.forEach(function (item) {
@@ -323,19 +411,19 @@
     var line = document.getElementById("budget-line");
     var pkg = packageByName(state.service, state.packageName);
     if (!pkg) {
-      line.textContent = "Бюджет з’явиться після вибору пакета.";
+      line.textContent = t.budgetEmpty;
       return;
     }
-    line.textContent = "Бюджет: " + (pkg.usd ? pkg.price + " (" + pkg.usd + ")" : pkg.price) + ". Термін: " + pkg.time + ".";
+    line.textContent = t.budgetPrefix + (pkg.usd ? pkg.price + " (" + pkg.usd + ")" : pkg.price) + ". " + t.termPrefix + pkg.time + ".";
   }
 
   function validateStep(step) {
     if (step === 1 && !state.service) {
-      setStepError("Оберіть послугу.");
+      setStepError(t.errService);
       return false;
     }
     if (step === 2 && !state.packageName) {
-      setStepError("Оберіть пакет.");
+      setStepError(t.errPackage);
       return false;
     }
     return true;
@@ -362,15 +450,15 @@
     var honeypot = document.getElementById("company_url").value.trim();
     var valid = true;
 
-    valid = setFieldError("lead-name", name.length >= 2 ? "" : "Вкажіть, як до вас звертатися.") && valid;
-    valid = setFieldError("lead-contact", validContact(contact) ? "" : "Вкажіть Telegram, телефон або email.") && valid;
-    valid = setFieldError("lead-service", state.service ? "" : "Оберіть послугу.") && valid;
-    valid = setFieldError("lead-package", state.packageName ? "" : "Оберіть пакет.") && valid;
-    valid = setFieldError("lead-task", task.length >= 10 ? "" : "Опишіть задачу хоча б одним реченням.") && valid;
+    valid = setFieldError("lead-name", name.length >= 2 ? "" : t.errName) && valid;
+    valid = setFieldError("lead-contact", validContact(contact) ? "" : t.errContact) && valid;
+    valid = setFieldError("lead-service", state.service ? "" : t.errService) && valid;
+    valid = setFieldError("lead-package", state.packageName ? "" : t.errPackage) && valid;
+    valid = setFieldError("lead-task", task.length >= 10 ? "" : t.errTask) && valid;
     if (task.length > 2000) {
-      valid = setFieldError("lead-task", "Скоротіть опис до 2000 символів.") && valid;
+      valid = setFieldError("lead-task", t.errTaskLong) && valid;
     }
-    valid = setFieldError("lead-consent", consent ? "" : "Потрібна згода, щоб зв’язатися щодо заявки.") && valid;
+    valid = setFieldError("lead-consent", consent ? "" : t.errConsent) && valid;
     if (!valid) {
       var firstInvalid = form.querySelector("[aria-invalid='true']");
       if (firstInvalid) firstInvalid.focus();
@@ -384,11 +472,11 @@
 
     var url = scriptUrl();
     if (url === "") {
-      showError("Заявка з сайту ще не підключена до таблиці. Напишіть у Telegram — так вона точно дійде.");
+      showError(t.errNoUrl);
       return;
     }
     if (url === null) {
-      showError("Адреса форми налаштована некоректно. Напишіть у Telegram — відповімо там.");
+      showError(t.errBadUrl);
       return;
     }
 
@@ -400,7 +488,7 @@
       package: pkg.name + " · " + pkg.time,
       budget: pkg.usd ? pkg.price + " (" + pkg.usd + ")" : pkg.price,
       task: task,
-      consent: "так",
+      consent: t.consentValue,
       company_url: "",
       page: location.origin + location.pathname,
       origin: location.origin,
@@ -410,18 +498,18 @@
     state.sending = true;
     var submit = document.getElementById("lead-submit");
     submit.disabled = true;
-    submit.textContent = "Надсилаємо…";
-    document.getElementById("form-status").textContent = "Надсилаємо заявку…";
+    submit.textContent = t.sending;
+    document.getElementById("form-status").textContent = t.sendingStatus;
     postLead(url, payload).then(function () {
       showSuccess();
     }).catch(function () {
       document.getElementById("form-status").textContent = "";
-      showError("Не вдалося надіслати заявку з сайту. Напишіть у Telegram — відповімо там.");
+      showError(t.errSend);
     }).finally(function () {
       state.sending = false;
       var submitButton = document.getElementById("lead-submit");
       submitButton.disabled = false;
-      submitButton.textContent = "Надіслати заявку";
+      submitButton.textContent = t.send;
     });
   }
 
@@ -489,7 +577,7 @@
     document.getElementById("form-error").hidden = true;
     var success = document.getElementById("form-success");
     success.hidden = false;
-    document.getElementById("form-status").textContent = "Заявку записали.";
+    document.getElementById("form-status").textContent = t.savedStatus;
     success.focus();
   }
 

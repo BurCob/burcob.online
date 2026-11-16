@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BurCob — landing pages, admin panels, automation and integrations</title>
+  <meta name="description" content="BurCob studio: landing pages and small sites, admin panels, lead automation, and integrations with payments, CRM and Telegram. Starting prices, 50% upfront.">
+  <meta name="author" content="BurCob">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f3eee6">
+  <link rel="canonical" href="https://www.burcob.online/en/">
+  <link rel="alternate" hreflang="uk" href="https://www.burcob.online/">
+  <link rel="alternate" hreflang="en" href="https://www.burcob.online/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.burcob.online/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:site_name" content="BurCob">
+  <meta property="og:title" content="BurCob — landing pages, admin panels, automation and integrations">
+  <meta property="og:description" content="BurCob studio: landing pages and small sites, admin panels, lead automation, and integrations with payments, CRM and Telegram. Starting prices, 50% upfront.">
+  <meta property="og:url" content="https://www.burcob.online/en/">
+  <meta property="og:image" content="https://www.burcob.online/assets/og-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BurCob — landing pages, admin panels and automation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BurCob — landing pages, admin panels, automation and integrations">
+  <meta name="twitter:description" content="BurCob studio: landing pages and small sites, admin panels, lead automation, and integrations with payments, CRM and Telegram.">
+  <meta name="twitter:image" content="https://www.burcob.online/assets/og-en.jpg">
+  <meta name="twitter:image:alt" content="BurCob — landing pages, admin panels and automation">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    (function () {
+      var KEY = "burcob-lang";
+      var here = document.documentElement.lang === "en" ? "en" : "uk";
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved === "uk" || saved === "en") return;
+        var ua = navigator.userAgent || "";
+        if (navigator.webdriver) return;
+        if (/googlebot|adsbot-google|mediapartners-google|bingbot|bingpreview|duckduckbot|baiduspider|yandexbot|slurp|facebookexternalhit|facebot|ia_archiver|semrushbot|ahrefsbot|mj12bot|dotbot|petalbot|bytespider|amazonbot|gptbot|chatgpt-user|oai-searchbot|claudebot|anthropic-ai|perplexitybot|applebot|twitterbot|linkedinbot|slackbot|telegrambot|discordbot|pinterestbot|redditbot|embedly|vkshare|w3c_validator|lighthouse|chrome-lighthouse|headlesschrome|google-inspectiontool|seznambot|screaming frog|crawler|spider/i.test(ua)) return;
+        var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+        var target = "en";
+        for (var i = 0; i < list.length; i++) {
+          var code = String(list[i] || "").toLowerCase().split("-")[0];
+          if (code === "uk" || code === "ru") { target = "uk"; break; }
+          if (code === "en") { target = "en"; break; }
+        }
+        localStorage.setItem(KEY, target);
+        if (target !== here) location.replace(target === "en" ? "/en/" : "/");
+      } catch (error) {}
+    })();
+  </script>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("burcob-theme");
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#10161e" : "#f3eee6");
+      } catch (error) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": "https://www.burcob.online/#organization",
+        "name": "BurCob",
+        "url": "https://www.burcob.online/",
+        "logo": "https://www.burcob.online/assets/logo.webp",
+        "image": "https://www.burcob.online/assets/og-en.jpg",
+        "description": "A studio of GoIT graduates: landing pages, admin panels, business automation and integrations.",
+        "knowsLanguage": ["uk", "en"],
+        "areaServed": "UA",
+        "sameAs": ["https://github.com/BurCob"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://t.me/tony_kobs",
+            "availableLanguage": ["Ukrainian", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://t.me/Groteskzp",
+            "availableLanguage": ["Ukrainian", "English"]
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "BurCob services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Layout and landing pages",
+                "description": "A page or a small site from your design or a simple template."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Admin panels for an existing site",
+                "description": "A cabinet for a site you already have: lists, forms, roles."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Business automation",
+                "description": "Lead and notification flows on n8n, Make or a script."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Integrations",
+                "description": "Payments, CRM, Telegram or several APIs in one chain."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#mykhailo",
+        "name": "Mykhailo Maksymov",
+        "jobTitle": "Project lead",
+        "image": "https://www.burcob.online/assets/team/mykhailo.webp",
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#natalia",
+        "name": "Natalia",
+        "jobTitle": "Project coordinator",
+        "image": "https://www.burcob.online/assets/team/natalia.webp",
+        "sameAs": ["https://t.me/Narrina", "https://github.com/nataliastepanova"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#anton",
+        "name": "Anton",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/anton.webp",
+        "sameAs": ["https://t.me/tony_kobs", "https://github.com/tony-kobs"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#yuliana",
+        "name": "Yuliana",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/yuliana.webp",
+        "sameAs": ["https://t.me/Akanekii", "https://github.com/Yulia2123"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#valeriy",
+        "name": "Valeriy",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/valeriy.webp",
+        "sameAs": ["https://t.me/Valerii2268", "https://github.com/ValeriySolod"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#adam",
+        "name": "Adam Lekh",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/adam.webp",
+        "sameAs": ["https://t.me/adampershyi", "https://github.com/AdamPershyi"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#valentyn",
+        "name": "Valentyn",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/valentyn.webp",
+        "sameAs": ["https://t.me/Groteskzp", "https://github.com/groteskzp"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.burcob.online/#romanna",
+        "name": "Romanna Brych",
+        "jobTitle": "Fullstack Developer",
+        "image": "https://www.burcob.online/assets/team/romanna.webp",
+        "sameAs": ["https://t.me/romanna_br", "https://github.com/Romanna-Brych"],
+        "worksFor": { "@id": "https://www.burcob.online/#organization" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#zmist">Skip to content</a>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <img src="/assets/logo.webp" alt="" width="640" height="640">
+        <span>BurCob</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Page sections">
+        <a href="#poslugy">Services</a>
+        <a href="#zayavka">Request</a>
+        <a href="#chomu">Why us</a>
+        <a href="#proces">Process</a>
+        <a href="#keis">Case</a>
+        <a href="#komanda">Team</a>
+        <div class="nav-lang">
+          <nav class="lang-switch" aria-label="Language">
+            <a href="/" hreflang="uk" lang="uk" data-lang="uk">UA</a>
+            <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a>
+          </nav>
+        </div>
+      </nav>
+      <div class="header-tools">
+        <nav class="lang-switch" aria-label="Language">
+          <a href="/" hreflang="uk" lang="uk" data-lang="uk">UA</a>
+          <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="#zayavka">Request</a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path>
+          </svg>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only">Menu</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="zmist">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">A studio of GoIT graduates</p>
+          <h1>Landing pages, admin panels and lead automation</h1>
+          <p class="lede">BurCob builds landing pages and small sites, admin panels for products that already work, and connects leads to spreadsheets, CRM, payments and Telegram.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#zayavka">Leave a request</a>
+            <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Anton</a>
+            <a class="btn btn-ghost" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Valentyn</a>
+          </div>
+          <ul class="chips">
+            <li>Starting price after a short brief</li>
+            <li>50% upfront</li>
+            <li>14 days of small fixes</li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <div class="seal">
+            <img src="/assets/logo.webp" width="640" height="640" alt="BurCob logo: an origami hobby falcon" fetchpriority="high" decoding="async">
+          </div>
+          <aside class="slip" aria-label="Starting prices">
+            <h2>Packages from</h2>
+            <ol>
+              <li><span>Landing page</span> <strong>5&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Admin panel</span> <strong>9&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Automation</span> <strong>4&nbsp;000&nbsp;₴</strong></li>
+              <li><span>Integration</span> <strong>5&nbsp;000&nbsp;₴</strong></li>
+            </ol>
+            <a href="#poslugy">All packages</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="poslugy">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Services</p>
+          <h2>Four directions, three packages each</h2>
+          <p>What is included, the timeline and a starting price. We lock the exact amount after a short brief. Exchange-rate guide: 1&nbsp;USD ≈ 45&nbsp;₴ (NBU, November 2026).</p>
+        </div>
+
+        <article class="service" id="verstka">
+          <div class="service-head">
+            <span class="idx">01</span>
+            <div>
+              <h3>Layout and landing pages</h3>
+              <p>A page or a small site from your design or a simple template.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Layout and landing pages" data-package="Start" data-price="from 5 000 ₴" data-usd="~$110" data-time="5–7 days">
+              <header>
+                <h4>Start</h4>
+                <p class="time">5–7 days</p>
+              </header>
+              <p class="price"><span class="sum">from 5&nbsp;000&nbsp;₴</span> <span class="usd">~$110</span></p>
+              <p class="desc">A 5–8 block landing page from a Figma file or a simple template, responsive layout, a lead form to Telegram or email.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Layout and landing pages" data-package="Business" data-price="from 9 000 ₴" data-usd="~$200" data-time="7–14 days">
+              <header>
+                <h4>Business</h4>
+                <p class="time">7–14 days</p>
+              </header>
+              <p class="price"><span class="sum">from 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">An 8–12 block landing page or a brochure site of up to 5 pages, basic motion, analytics (GA4 / Meta Pixel).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Layout and landing pages" data-package="Extended" data-price="from 16 000 ₴" data-usd="~$355" data-time="2–3 weeks">
+              <header>
+                <h4>Extended</h4>
+                <p class="time">2–3 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 16&nbsp;000&nbsp;₴</span> <span class="usd">~$355</span></p>
+              <p class="desc">A multi-page site, content editing, a quiz or calculator, basic SEO markup.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="admin">
+          <div class="service-head">
+            <span class="idx">02</span>
+            <div>
+              <h3>Admin panels for an existing site</h3>
+              <p>A cabinet for a site you already have: lists, forms, roles.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Admin panels for an existing site" data-package="Start" data-price="from 9 000 ₴" data-usd="~$200" data-time="1–2 weeks">
+              <header>
+                <h4>Start</h4>
+                <p class="time">1–2 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">Sign-in, lists and forms (CRUD) for 1–2 entities, a desktop-friendly layout.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Admin panels for an existing site" data-package="Business" data-price="from 12 000 ₴" data-usd="~$265" data-time="2–3 weeks">
+              <header>
+                <h4>Business</h4>
+                <p class="time">2–3 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 12&nbsp;000&nbsp;₴</span> <span class="usd">~$265</span></p>
+              <p class="desc">Filters and search, roles (admin / operator), CSV/Excel export.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Admin panels for an existing site" data-package="Extended" data-price="from 22 000 ₴" data-usd="~$490" data-time="3–5 weeks">
+              <header>
+                <h4>Extended</h4>
+                <p class="time">3–5 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 22&nbsp;000&nbsp;₴</span> <span class="usd">~$490</span></p>
+              <p class="desc">A dashboard with key metrics, a change log, a connection to your API or database.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="avtomatyzatsiia">
+          <div class="service-head">
+            <span class="idx">03</span>
+            <div>
+              <h3>Business automation</h3>
+              <p>Lead and notification flows on n8n, Make or a script.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Business automation" data-package="Start" data-price="from 4 000 ₴" data-usd="~$90" data-time="3–5 days">
+              <header>
+                <h4>Start</h4>
+                <p class="time">3–5 days</p>
+              </header>
+              <p class="price"><span class="sum">from 4&nbsp;000&nbsp;₴</span> <span class="usd">~$90</span></p>
+              <p class="desc">One flow: a lead from the site or a form into a Google Sheet or Telegram.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Business automation" data-package="Business" data-price="from 8 000 ₴" data-usd="~$180" data-time="1–2 weeks">
+              <header>
+                <h4>Business</h4>
+                <p class="time">1–2 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 8&nbsp;000&nbsp;₴</span> <span class="usd">~$180</span></p>
+              <p class="desc">2–3 processes, team notifications, basic error handling (n8n, Make or a script).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Business automation" data-package="Extended" data-price="from 14 000 ₴" data-usd="~$310" data-time="2–3 weeks">
+              <header>
+                <h4>Extended</h4>
+                <p class="time">2–3 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 14&nbsp;000&nbsp;₴</span> <span class="usd">~$310</span></p>
+              <p class="desc">Several systems in one chain, retry queues, simple admin access to the scenarios.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+          </div>
+        </article>
+
+        <article class="service" id="intehratsii">
+          <div class="service-head">
+            <span class="idx">04</span>
+            <div>
+              <h3>Integrations</h3>
+              <p>Payments, CRM, Telegram or several APIs in one chain.</p>
+            </div>
+          </div>
+          <div class="packages">
+            <article class="package" data-service="Integrations" data-package="Start" data-price="from 5 000 ₴" data-usd="~$110" data-time="5–7 days">
+              <header>
+                <h4>Start</h4>
+                <p class="time">5–7 days</p>
+              </header>
+              <p class="price"><span class="sum">from 5&nbsp;000&nbsp;₴</span> <span class="usd">~$110</span></p>
+              <p class="desc">One integration: monobank / LiqPay / another payment, or a lead into CRM / Telegram.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Integrations" data-package="Business" data-price="from 9 000 ₴" data-usd="~$200" data-time="1–2 weeks">
+              <header>
+                <h4>Business</h4>
+                <p class="time">1–2 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 9&nbsp;000&nbsp;₴</span> <span class="usd">~$200</span></p>
+              <p class="desc">A lead bot plus a record in CRM or a spreadsheet, or a payment that updates the order status.</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+            <article class="package" data-service="Integrations" data-package="Extended" data-price="from 16 000 ₴" data-usd="~$355" data-time="2–4 weeks">
+              <header>
+                <h4>Extended</h4>
+                <p class="time">2–4 weeks</p>
+              </header>
+              <p class="price"><span class="sum">from 16&nbsp;000&nbsp;₴</span> <span class="usd">~$355</span></p>
+              <p class="desc">A bot with a catalog and payments, or several APIs (CRM + payments + notifications).</p>
+              <button class="btn btn-ghost" type="button" data-choose>Choose</button>
+            </article>
+          </div>
+        </article>
+
+        <aside class="exclusions">
+          <h3>What the price does not include</h3>
+          <ul>
+            <li>Complex design and branding from scratch, a logo, full copywriting. You provide the design and the copy — or we estimate that separately.</li>
+            <li>Domain, hosting, VPS, SSL and paid plans for CRM, payment providers, n8n/Make.</li>
+            <li>Ads, SMM, filling the site with a large amount of content.</li>
+            <li>Mobile apps and integrations with 1C / BAS without an open API and documentation.</li>
+            <li>Support after the warranty window: 14 days of small fixes after delivery.</li>
+          </ul>
+          <p class="fine">Small work outside a package starts at 400&nbsp;₴/hour (~$9). 50% upfront, the rest after acceptance. Prices are starting points. This is not a public offer.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="zayavka">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Request</p>
+          <h2>Pick a service and a package — then describe the task</h2>
+          <p>Three steps. The request lands in our spreadsheet. If the form does not respond, message Anton or Valentyn on Telegram.</p>
+        </div>
+        <div class="funnel">
+          <form id="lead-form" novalidate>
+            <ol class="progress">
+              <li><button type="button" data-goto="1">1. Service</button></li>
+              <li><button type="button" data-goto="2">2. Package</button></li>
+              <li><button type="button" data-goto="3">3. Contact</button></li>
+            </ol>
+
+            <div class="step" data-step="1">
+              <h3 tabindex="-1">Which service do you need?</h3>
+              <p>Pick a direction now, or say you are not sure yet. <a href="#poslugy">Compare all packages</a></p>
+              <div class="choices" id="choice-service"></div>
+              <p class="step-error" role="alert"></p>
+            </div>
+
+            <div class="step" data-step="2" hidden>
+              <h3 tabindex="-1">Which package is closer in scope?</h3>
+              <p>This is a starting guide, not the final invoice. We lock the exact amount after a brief.</p>
+              <div class="choices" id="choice-package"></div>
+              <p class="step-error" role="alert"></p>
+            </div>
+
+            <div class="step" data-step="3" hidden>
+              <h3 tabindex="-1">How should we reach you?</h3>
+              <p>Leave a Telegram, phone or email — we will reply there.</p>
+              <div class="form-grid">
+                <div class="form-row">
+                  <div class="field">
+                    <label for="lead-name">Name</label>
+                    <input id="lead-name" name="name" type="text" autocomplete="name" maxlength="80" required>
+                    <p class="error" id="lead-name-error"></p>
+                  </div>
+                  <div class="field">
+                    <label for="lead-contact">Telegram, phone or email</label>
+                    <input id="lead-contact" name="contact" type="text" autocomplete="on" inputmode="text" maxlength="120" placeholder="@telegram, +380… or email" required>
+                    <p class="error" id="lead-contact-error"></p>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="field">
+                    <label for="lead-service">Service</label>
+                    <select id="lead-service" name="service" required></select>
+                    <p class="error" id="lead-service-error"></p>
+                  </div>
+                  <div class="field">
+                    <label for="lead-package">Package and budget</label>
+                    <select id="lead-package" name="package" required></select>
+                    <p class="error" id="lead-package-error"></p>
+                  </div>
+                </div>
+                <p class="budget-line" id="budget-line">The budget appears after you choose a package.</p>
+                <div class="field">
+                  <label for="lead-task">Shortly about the task</label>
+                  <textarea id="lead-task" name="task" maxlength="2000" required placeholder="What already exists, what should appear, and the date you need it by."></textarea>
+                  <p class="error" id="lead-task-error"></p>
+                </div>
+                <div class="field">
+                  <label class="check" for="lead-consent">
+                    <input id="lead-consent" name="consent" type="checkbox" value="yes" required>
+                    <span>I agree that BurCob may store this information and contact me about the request.</span>
+                  </label>
+                  <p class="error" id="lead-consent-error"></p>
+                </div>
+                <p class="fine">Name, contact and the task description are used only to reply. This form does not send any other mailings.</p>
+              </div>
+            </div>
+
+            <div class="hp" aria-hidden="true">
+              <label for="company_url">Company website</label>
+              <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="funnel-nav">
+              <button class="btn btn-ghost" id="funnel-back" type="button">Back</button>
+              <button class="btn btn-primary" id="funnel-next" type="button">Next</button>
+              <button class="btn btn-primary" id="lead-submit" type="submit" hidden>Send request</button>
+            </div>
+          </form>
+
+          <div class="banner" id="form-success" hidden tabindex="-1">
+            <h3>Thank you</h3>
+            <p>The request is saved. We will use the contact you left.</p>
+          </div>
+          <div class="banner is-error" id="form-error" role="alert" hidden>
+            <p></p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Anton</a>
+              <a class="btn btn-ghost" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Valentyn</a>
+            </div>
+          </div>
+          <p class="sr-only" id="form-status" role="status"></p>
+          <noscript>
+            <p>To send a request with this form, enable JavaScript. Or message <a href="https://t.me/tony_kobs">Anton</a> or <a href="https://t.me/Groteskzp">Valentyn</a> on Telegram.</p>
+          </noscript>
+        </div>
+        <iframe name="lead-frame" id="lead-frame" hidden title="Form response" tabindex="-1"></iframe>
+      </div>
+    </section>
+
+    <section class="section" id="chomu">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Why us</p>
+          <h2>A small studio, without extra promises</h2>
+          <p>We do not collect testimonials on this page and we do not quote other people’s numbers. Below is how the work is set up.</p>
+        </div>
+        <div class="reasons">
+          <article class="reason">
+            <h3>You talk to the people who build</h3>
+            <p>The studio team takes the task from the brief to delivery. There is no separate manager between you and the work. Write to Anton or Valentyn on Telegram.</p>
+          </article>
+          <article class="reason">
+            <h3>Packages are visible before we start</h3>
+            <p>There is a scope, a timeline and a starting price. We lock the exact amount after a short brief, rather than hiding it until the end.</p>
+          </article>
+          <article class="reason">
+            <h3>Payment in half</h3>
+            <p>50% upfront, the rest after acceptance. Small work outside a package starts at 400&nbsp;₴/hour.</p>
+          </article>
+          <article class="reason">
+            <h3>14 days for small fixes</h3>
+            <p>After delivery there is a warranty window for small fixes inside the agreed scope.</p>
+          </article>
+          <article class="reason">
+            <h3>We say up front what we do not take</h3>
+            <p>Branding from scratch, ads, mobile apps and 1C without an open API are separate, or not our work. The packages say so.</p>
+          </article>
+          <article class="reason">
+            <h3>There is our own product</h3>
+            <p>BurCob Kanban is a live service the team uses. It can be connected to leads and statuses. Access terms are agreed separately.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proces">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">How we work</p>
+          <h2>Six steps from the brief to the fixes</h2>
+        </div>
+        <ol class="process">
+          <li class="process-step">
+            <span class="n">01</span>
+            <h3>Brief</h3>
+            <p>You tell us what already exists and what result you need. The form on this page or Telegram.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">02</span>
+            <h3>Estimate</h3>
+            <p>We pick a package or price the work outside one. We lock scope, timeline and price.</p>
+          </li>
+          <li class="process-step is-key">
+            <span class="n">03</span>
+            <h3>50% upfront</h3>
+            <p>After it, we start the work. You pay the rest after acceptance.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">04</span>
+            <h3>Work</h3>
+            <p>We build within the agreed scope. New wishes outside it are estimated separately.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">05</span>
+            <h3>Acceptance</h3>
+            <p>We hand over the result. You review it and pay the rest.</p>
+          </li>
+          <li class="process-step">
+            <span class="n">06</span>
+            <h3>14 days</h3>
+            <p>Small fixes after delivery are inside the warranty. Support after that is agreed separately.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="keis">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Our product</p>
+          <h2>BurCob Kanban</h2>
+        </div>
+        <div class="case-layout">
+          <div class="case-copy">
+            <p>A Ukrainian kanban board for team work: tasks, time tracking, payments and a bot API in one service. Three views — a board, a calendar with Ukrainian holidays, and a list.</p>
+            <p class="fine">It can be connected to a client’s processes: leads, statuses, team work. Access terms are agreed separately.</p>
+            <a class="btn btn-primary" href="https://kanban.burcob.online" target="_blank" rel="noopener noreferrer">Open kanban.burcob.online</a>
+          </div>
+          <div class="shots">
+            <figure class="shot">
+              <img src="/assets/kanban-doshka.jpg" width="1400" height="782" alt="BurCob Kanban: a demo project board, Launch of an online store, with task columns" loading="lazy" decoding="async">
+              <figcaption>Board with columns</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="/assets/kanban-kartka.jpg" width="1400" height="782" alt="BurCob Kanban: a task card with a description, checklist, labels, priority and due date" loading="lazy" decoding="async">
+              <figcaption>Task card</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="komanda">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Team</p>
+          <h2>Who builds</h2>
+          <p>The BurCob team. For a request, message Anton or Valentyn on Telegram.</p>
+        </div>
+        <div class="team-grid">
+          <article class="person">
+            <img src="/assets/team/mykhailo.webp" width="640" height="800" alt="Portrait of Mykhailo Maksymov, BurCob project lead" loading="lazy" decoding="async">
+            <h3>Mykhailo Maksymov</h3>
+            <p>Project lead</p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/natalia.webp" width="640" height="800" alt="Portrait of Natalia, BurCob project coordinator" loading="lazy" decoding="async">
+            <h3>Natalia</h3>
+            <p>Project coordinator</p>
+            <p class="person-links">
+              <a href="https://t.me/Narrina" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Natalia</span></a>
+              <a href="https://github.com/nataliastepanova" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Natalia</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/anton.webp" width="640" height="800" alt="Portrait of Anton, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Anton</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Anton</span></a>
+              <a href="https://github.com/tony-kobs" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Anton</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/yuliana.webp" width="640" height="800" alt="Portrait of Yuliana, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Yuliana</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Akanekii" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Yuliana</span></a>
+              <a href="https://github.com/Yulia2123" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Yuliana</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/valeriy.webp" width="640" height="800" alt="Portrait of Valeriy, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Valeriy</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Valerii2268" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Valeriy</span></a>
+              <a href="https://github.com/ValeriySolod" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Valeriy</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/adam.webp" width="640" height="800" alt="Portrait of Adam Lekh, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Adam Lekh</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/adampershyi" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Adam Lekh</span></a>
+              <a href="https://github.com/AdamPershyi" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Adam Lekh</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/valentyn.webp" width="640" height="800" alt="Portrait of Valentyn, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Valentyn</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Valentyn</span></a>
+              <a href="https://github.com/groteskzp" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Valentyn</span></a>
+            </p>
+          </article>
+          <article class="person">
+            <img src="/assets/team/romanna.webp" width="640" height="800" alt="Portrait of Romanna Brych, a BurCob fullstack developer" loading="lazy" decoding="async">
+            <h3>Romanna Brych</h3>
+            <p>Fullstack Developer</p>
+            <p class="person-links">
+              <a href="https://t.me/romanna_br" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only">, Romanna Brych</span></a>
+              <a href="https://github.com/Romanna-Brych" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">, Romanna Brych</span></a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakty">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Contacts</p>
+          <h2>Where to write</h2>
+          <p>We reply on Telegram. A request with a package can be left in the form above.</p>
+        </div>
+        <div class="contact-list">
+          <a class="contact-card" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">
+            <h3>Anton</h3>
+            <p>Message Anton on Telegram about the task.</p>
+            <span>t.me/tony_kobs</span>
+          </a>
+          <a class="contact-card" href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">
+            <h3>Valentyn</h3>
+            <p>Message Valentyn on Telegram about the task.</p>
+            <span>t.me/Groteskzp</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 BurCob. Landing pages, admin panels, automation, integrations. Not a public offer.</p>
+      <nav aria-label="Footer contacts">
+        <a href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Telegram · Anton</a>
+        <a href="https://t.me/Groteskzp" target="_blank" rel="noopener noreferrer">Telegram · Valentyn</a>
+        <a href="https://github.com/BurCob" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/config.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
