@@ -846,7 +846,6 @@ textarea[aria-invalid="true"] {
 .reasons,
 .process,
 .shots,
-.team-grid,
 .contact-list {
   display: grid;
   gap: 12px;
@@ -904,6 +903,59 @@ textarea[aria-invalid="true"] {
   border-radius: 16px;
   margin-bottom: 12px;
   background: var(--navy);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.team-carousel {
+  display: grid;
+  gap: 12px;
+}
+
+.team-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.team-controls .icon-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.team-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  scrollbar-gutter: stable;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+
+.team-track:focus-visible {
+  outline-offset: -4px;
+}
+
+.team-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.team-track > .person {
+  flex: 0 0 82%;
+  scroll-snap-align: start;
+}
+
+.team-track a {
+  cursor: pointer;
 }
 
 .person-links {
@@ -1012,10 +1064,13 @@ textarea[aria-invalid="true"] {
   .choices,
   .reasons,
   .shots,
-  .team-grid,
   .contact-list,
   .packages {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .team-track > .person {
+    flex-basis: calc((100% - 12px) / 2);
   }
 
   .funnel {
@@ -1047,8 +1102,8 @@ textarea[aria-invalid="true"] {
 }
 
 @media (min-width: 1100px) {
-  .team-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .team-track > .person {
+    flex-basis: calc((100% - 24px) / 3);
   }
 }
 
@@ -1118,6 +1173,10 @@ textarea[aria-invalid="true"] {
 
 @media (prefers-reduced-motion: reduce) {
   html {
+    scroll-behavior: auto;
+  }
+
+  .team-track {
     scroll-behavior: auto;
   }
 

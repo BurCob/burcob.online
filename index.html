@@ -141,14 +141,6 @@
       },
       {
         "@type": "Person",
-        "@id": "https://www.burcob.online/#mykhailo",
-        "name": "Михайло Максимов",
-        "jobTitle": "Керівник проєкту",
-        "image": "https://www.burcob.online/assets/team/mykhailo.webp",
-        "worksFor": { "@id": "https://www.burcob.online/#organization" }
-      },
-      {
-        "@type": "Person",
         "@id": "https://www.burcob.online/#natalia",
         "name": "Наталія",
         "jobTitle": "Координатор проєкту",
@@ -172,15 +164,6 @@
         "jobTitle": "Fullstack Developer",
         "image": "https://www.burcob.online/assets/team/yuliana.webp",
         "sameAs": ["https://t.me/Akanekii", "https://github.com/Yulia2123"],
-        "worksFor": { "@id": "https://www.burcob.online/#organization" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://www.burcob.online/#valeriy",
-        "name": "Валерій",
-        "jobTitle": "Fullstack Developer",
-        "image": "https://www.burcob.online/assets/team/valeriy.webp",
-        "sameAs": ["https://t.me/Valerii2268", "https://github.com/ValeriySolod"],
         "worksFor": { "@id": "https://www.burcob.online/#organization" }
       },
       {
@@ -688,15 +671,23 @@
       <div class="wrap">
         <div class="section-head">
           <p class="kicker">Команда</p>
-          <h2>Хто робить</h2>
+          <h2 id="team-heading">Хто робить</h2>
           <p>Команда BurCob. Щодо заявки напишіть Антону або Валентину в Telegram.</p>
         </div>
-        <div class="team-grid">
-          <article class="person">
-            <img src="/assets/team/mykhailo.webp" width="640" height="800" alt="Портрет Михайла Максимова, керівника проєкту BurCob" loading="lazy" decoding="async">
-            <h3>Михайло Максимов</h3>
-            <p>Керівник проєкту</p>
-          </article>
+        <div class="team-carousel" data-team-carousel>
+          <div class="team-controls" role="group" aria-label="Прокрутка команди">
+            <button class="icon-btn" type="button" data-team-prev aria-controls="team-track" aria-label="Попередні учасники команди">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 6.5 9 12l5.5 5.5"></path>
+              </svg>
+            </button>
+            <button class="icon-btn" type="button" data-team-next aria-controls="team-track" aria-label="Наступні учасники команди">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 6.5 15 12l-5.5 5.5"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="team-track" id="team-track" data-team-track tabindex="0" role="region" aria-roledescription="карусель" aria-labelledby="team-heading">
           <article class="person">
             <img src="/assets/team/natalia.webp" width="640" height="800" alt="Портрет Наталії, координаторки проєкту BurCob" loading="lazy" decoding="async">
             <h3>Наталія</h3>
@@ -722,15 +713,6 @@
             <p class="person-links">
               <a href="https://t.me/Akanekii" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Юліани</span></a>
               <a href="https://github.com/Yulia2123" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Юліани</span></a>
-            </p>
-          </article>
-          <article class="person">
-            <img src="/assets/team/valeriy.webp" width="640" height="800" alt="Портрет Валерія, fullstack-розробника BurCob" loading="lazy" decoding="async">
-            <h3>Валерій</h3>
-            <p>Fullstack Developer</p>
-            <p class="person-links">
-              <a href="https://t.me/Valerii2268" target="_blank" rel="noopener noreferrer">Telegram<span class="sr-only"> Валерія</span></a>
-              <a href="https://github.com/ValeriySolod" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Валерія</span></a>
             </p>
           </article>
           <article class="person">
@@ -760,6 +742,7 @@
               <a href="https://github.com/Romanna-Brych" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> Романни Брич</span></a>
             </p>
           </article>
+          </div>
         </div>
       </div>
     </section>

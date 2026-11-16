@@ -93,13 +93,21 @@ for html, lang, canonical, title_part in (
     need("data-lang=\"uk\"" in html and "data-lang=\"en\"" in html, f"немає перемикача мови {lang}")
     need("burcob-lang" in html, f"немає вибору мови {lang}")
     need("navigator.webdriver" in html, f"немає захисту від редіректу ботів {lang}")
-    for person in ("mykhailo", "natalia", "anton", "yuliana", "valeriy", "adam", "valentyn", "romanna"):
+    for person in ("natalia", "anton", "yuliana", "adam", "valentyn", "romanna"):
         need(f"/assets/team/{person}.webp" in html, f"немає фото {person} на сторінці {lang}")
         need((ROOT / "assets/team" / f"{person}.webp").is_file(), f"немає файлу фото {person}")
+    for person in ("mykhailo", "valeriy"):
+        need(f"/assets/team/{person}.webp" not in html, f"зайве фото {person} на сторінці {lang}")
+        need(person not in html, f"{person} лишився на сторінці {lang}")
+    need("data-team-carousel" in html and "data-team-prev" in html and "data-team-next" in html, f"немає каруселі команди {lang}")
+    need('id="team-track"' in html and 'tabindex="0"' in html, f"карусель команди без клавіатури {lang}")
 
-need("Михайло Максимов" in index and "Романна Брич" in index, "українська команда неповна")
-need("Mykhailo Maksymov" in english and "Romanna Brych" in english, "англійська команда неповна")
-need("Керівник проєкту" in index and "Project lead" in english, "немає ролі керівника")
+need(not (ROOT / "assets/team/mykhailo.webp").exists(), "фото mykhailo має бути видалене")
+need(not (ROOT / "assets/team/valeriy.webp").exists(), "фото valeriy має бути видалене")
+need("Наталія" in index and "Романна Брич" in index and "Михайло" not in index and "Валерій" not in index, "українська команда")
+need("Natalia" in english and "Romanna Brych" in english and "Mykhailo" not in english and "Valeriy" not in english, "англійська команда")
+need("scroll-snap-type" in styles and "team-track" in styles and "prefers-reduced-motion" in styles, "стилі каруселі")
+need("initTeamCarousel" in main_js and "prefers-reduced-motion" in main_js, "немає скрипту каруселі")
 need(index.count("<h1") == 1 and english.count("<h1") == 1, "зайвий h1")
 need("noindex" not in page_404.lower(), "noindex на 404")
 need("https://t.me/tony_kobs" in page_404 and "https://t.me/Groteskzp" in page_404, "404 без Telegram")
