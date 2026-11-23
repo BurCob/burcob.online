@@ -925,6 +925,10 @@ textarea[aria-invalid="true"] {
 }
 
 .team-track {
+  /* Containing block for the .sr-only names inside each card.
+     Those spans are position:absolute; without this, their containing
+     block is the viewport and they stretch the page horizontally. */
+  position: relative;
   display: flex;
   gap: 12px;
   overflow-x: auto;
