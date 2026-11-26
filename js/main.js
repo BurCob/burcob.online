@@ -1,4 +1,5 @@
 (function () {
+  document.documentElement.classList.add("js");
   var SCRIPT_URL_RE = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
   var STRINGS = {
     uk: {
@@ -157,7 +158,7 @@
     var dark = document.documentElement.getAttribute("data-theme") === "dark";
     button.setAttribute("aria-label", dark ? t.themeToLight : t.themeToDark);
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#10161e" : "#f3eee6");
+    if (meta) meta.setAttribute("content", dark ? "#101012" : "#181819");
   }
 
   function initNav() {

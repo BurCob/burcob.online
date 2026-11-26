@@ -7,7 +7,7 @@
   <meta name="description" content="Landing page with design 10 500–18 600 ₴, layout from your design from 6 300 ₴. Brief, estimate, 50% upfront. The exact price comes after the brief.">
   <meta name="author" content="BurCob">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#f3eee6">
+  <meta name="theme-color" content="#181819">
   <link rel="canonical" href="https://www.burcob.online/en/">
   <link rel="alternate" hreflang="uk" href="https://www.burcob.online/">
   <link rel="alternate" hreflang="en" href="https://www.burcob.online/en/">
@@ -67,7 +67,7 @@
           : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         document.documentElement.setAttribute("data-theme", theme);
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#10161e" : "#f3eee6");
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#101012" : "#181819");
       } catch (error) {}
     })();
   </script>
@@ -378,34 +378,36 @@
 
   <main id="zmist">
     <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="kicker">Estimate before we start</p>
-          <h1>Turnkey landing page: design, layout, leads. Stages, hours and price before we start</h1>
-          <p class="lede">First a brief, then an estimate, then a 50% prepayment. A landing page with design is 10&nbsp;500–18&nbsp;600&nbsp;₴, about 17 working days. We lock the exact sum after the brief.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#zayavka">Get an estimate</a>
-            <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Message on Telegram</a>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="kicker">Estimate before we start</p>
+            <h1>Turnkey landing page: design, layout, leads. Stages, hours and price before we start</h1>
+            <p class="lede">First a brief, then an estimate, then a 50% prepayment. A landing page with design is 10&nbsp;500–18&nbsp;600&nbsp;₴, about 17 working days. We lock the exact sum after the brief.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#zayavka">Get an estimate</a>
+              <a class="btn btn-ghost" href="https://t.me/tony_kobs" target="_blank" rel="noopener noreferrer">Message on Telegram</a>
+            </div>
           </div>
-          <ul class="chips">
-            <li>Price after the brief</li>
-            <li>Payment 50/50</li>
-            <li>14-day warranty</li>
-          </ul>
-        </div>
-        <div class="hero-art">
-          <div class="seal">
-            <img src="/assets/logo.webp" width="640" height="640" alt="BurCob — an origami hobby falcon" fetchpriority="high" decoding="async">
+          <div class="hero-art">
+            <div class="seal">
+              <img src="/assets/logo.webp" width="640" height="640" alt="BurCob — an origami hobby falcon" fetchpriority="high" decoding="async">
+            </div>
+            <aside class="slip" aria-label="Price guide">
+              <h2>Two tracks</h2>
+              <ol>
+                <li><span>Layout from a design</span> <strong>from 6&nbsp;300&nbsp;₴</strong></li>
+                <li><span>With design</span> <strong>10&nbsp;500–18&nbsp;600&nbsp;₴</strong></li>
+              </ol>
+              <a href="#techkarta">Landing tech card</a>
+            </aside>
           </div>
-          <aside class="slip" aria-label="Price guide">
-            <h2>Two tracks</h2>
-            <ol>
-              <li><span>Layout from a design</span> <strong>from 6&nbsp;300&nbsp;₴</strong></li>
-              <li><span>With design</span> <strong>10&nbsp;500–18&nbsp;600&nbsp;₴</strong></li>
-            </ol>
-            <a href="#techkarta">Landing tech card</a>
-          </aside>
         </div>
+        <ul class="chips">
+          <li>Price after the brief</li>
+          <li>Payment 50/50</li>
+          <li>14-day warranty</li>
+        </ul>
       </div>
     </section>
 
