@@ -68,8 +68,8 @@ need("actions/deploy-pages" not in workflow, "CI не має деплоїти Gi
 need("pull_request" in workflow and "check_site.py" in workflow, "воркфлоу не перевіряє pull request")
 
 for html, lang, canonical, title_part in (
-    (index, "uk", f"{ORIGIN}/", "лендінги, адмінки, автоматизація та інтеграції"),
-    (english, "en", f"{ORIGIN}/en/", "landing pages, admin panels, automation and integrations"),
+    (index, "uk", f"{ORIGIN}/", "лендінг під ключ: етапи, години й ціна"),
+    (english, "en", f"{ORIGIN}/en/", "turnkey landing page: stages, hours and price"),
 ):
     need(f'lang="{lang}"' in html, f"немає lang={lang}")
     need(h1_count(html) == 1, f"на сторінці {lang} має бути рівно один h1")
@@ -81,6 +81,12 @@ for html, lang, canonical, title_part in (
     need(f'property="og:url" content="{canonical}"' in html, f"немає og:url {canonical}")
     need('hreflang="uk"' in html and 'hreflang="en"' in html and 'hreflang="x-default"' in html, f"немає hreflang {lang}")
     need(f'{ORIGIN}/"' in html and f'{ORIGIN}/en/"' in html, f"hreflang без обох URL {lang}")
+    need(f'hreflang="x-default" href="{ORIGIN}/"' in html, f"x-default має вести на українську {lang}")
+    need(f'hreflang="x-default" href="{ORIGIN}/en/"' not in html, f"x-default лишився англійським {lang}")
+    need("FAQPage" in html and html.count('class="faq-item"') == 6, f"немає шести питань FAQ {lang}")
+    need("kanban-doshka.webp" in html and "kanban-kartka.webp" in html, f"немає webp канбану {lang}")
+    need("kanban-doshka.jpg" not in html and "kanban-kartka.jpg" not in html, f"jpg канбану лишився {lang}")
+    need('href="#produkt"' in html, f"немає розділу продукту {lang}")
     need("noindex" not in html.lower(), f"noindex на сторінці {lang}")
     need("https://t.me/tony_kobs" in html and "https://t.me/Groteskzp" in html, f"немає обох Telegram {lang}")
     need("https://github.com/BurCob" in html, f"немає GitHub організації {lang}")
@@ -108,18 +114,58 @@ need("Наталія" in index and "Романна Брич" in index and "Ми�
 need("Natalia" in english and "Romanna Brych" in english and "Mykhailo" not in english and "Valeriy" not in english, "англійська команда")
 need("scroll-snap-type" in styles and "team-track" in styles and "prefers-reduced-motion" in styles, "стилі каруселі")
 need("initTeamCarousel" in main_js and "prefers-reduced-motion" in main_js, "немає скрипту каруселі")
+need("IntersectionObserver" in main_js and "initReveal" in main_js, "немає scroll-reveal")
+need(":focus-visible" in styles and "scroll-behavior: smooth" in styles, "немає фокуса або плавного скролу")
 need(index.count("<h1") == 1 and english.count("<h1") == 1, "зайвий h1")
 need("noindex" not in page_404.lower(), "noindex на 404")
 need("https://t.me/tony_kobs" in page_404 and "https://t.me/Groteskzp" in page_404, "404 без Telegram")
 
-for price in ("5 000", "9 000", "16 000", "12 000", "22 000", "4 000", "8 000", "14 000", "400"):
+for price in (
+    "6&nbsp;300",
+    "11&nbsp;100",
+    "10&nbsp;500",
+    "18&nbsp;600",
+    "29&nbsp;100",
+    "51&nbsp;300",
+    "90&nbsp;300",
+    "156&nbsp;300",
+    "3&nbsp;900",
+    "7&nbsp;200",
+    "13&nbsp;200",
+    "23&nbsp;700",
+    "18&nbsp;900",
+    "15&nbsp;300",
+    "27&nbsp;600",
+    "52&nbsp;200",
+    "95&nbsp;400",
+    "20&nbsp;400",
+    "38&nbsp;400",
+    "300&nbsp;₴",
+    "35–62",
+    "21–37",
+    "97–171",
+    "301–521",
+):
     need(price in index and price in english, f"немає ціни {price}")
+
+for stale in ("400&nbsp;₴/год", "400&nbsp;₴/hour", "400 ₴/год", "від 5&nbsp;000", "from 5&nbsp;000", "від 9&nbsp;000", "from 9&nbsp;000", "Студія випускників GoIT", "A studio of GoIT graduates"):
+    need(stale not in index and stale not in english, f"застарілий фрагмент лишився: {stale}")
+
+need(">Продукт<" in index and ">Product<" in english, "навігація не перейменована на Продукт")
+need(">Кейс<" not in index and ">Case<" not in english, "пункт навігації Кейс лишився")
+need("Кейси додаємо лише за згодою замовника" in index, "немає фрази про згоду на кейси")
+need("We add case studies only with the client's consent." in english, "немає англійської фрази про згоду на кейси")
+need("GoIT" in index and "GoIT" in english, "немає згадки GoIT в команді")
+need("BurCob — орігамі-птах кобчик" in index, "немає alt героя")
+need('src="/assets/logo.webp" alt=""' in index and 'src="/assets/logo.webp" alt=""' in english, "логотип у шапці має бути декоративним")
 
 need(f"Sitemap: {ORIGIN}/sitemap.xml" in robots, "robots.txt без sitemap www")
 need("Disallow" not in robots, "robots.txt щось забороняє")
 need(f"<loc>{ORIGIN}/</loc>" in sitemap, "sitemap без української головної")
 need(f"<loc>{ORIGIN}/en/</loc>" in sitemap, "sitemap без англійської сторінки")
 need("xhtml:link" in sitemap and 'hreflang="uk"' in sitemap and 'hreflang="en"' in sitemap and 'hreflang="x-default"' in sitemap, "sitemap без hreflang")
+need(f'hreflang="x-default" href="{ORIGIN}/"' in sitemap, "sitemap: x-default має вести на українську")
+need(f'hreflang="x-default" href="{ORIGIN}/en/"' not in sitemap, "sitemap: x-default лишився англійським")
 need("burcob.online/" in sitemap and "https://burcob.online/" not in sitemap, "sitemap має канонічний www, без голого домену")
 
 need("data-theme" in styles and "lang-switch" in styles and "person img" in styles, "стилі без теми, мови або фото команди")
@@ -166,6 +212,10 @@ for html, label in ((index, "uk"), (english, "en")):
             path += "index.html"
         need((ROOT / path).is_file(), f"{label}: немає файлу за посиланням {match}")
 
+valentyn = ROOT / "assets/team/valentyn.webp"
+if valentyn.is_file():
+    need(valentyn.stat().st_size <= 50000, f"портрет Валентина заважкий: {valentyn.stat().st_size} байт")
+
 for asset in (
     "assets/logo.webp",
     "assets/og-uk.jpg",
@@ -173,8 +223,8 @@ for asset in (
     "assets/favicon-32.png",
     "assets/apple-touch-icon.png",
     "assets/icon-512.png",
-    "assets/kanban-doshka.jpg",
-    "assets/kanban-kartka.jpg",
+    "assets/kanban-doshka.webp",
+    "assets/kanban-kartka.webp",
     "favicon.ico",
     ".nojekyll",
 ):

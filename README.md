@@ -1,6 +1,6 @@
 # BurCob
 
-Лендінг студії [www.burcob.online](https://www.burcob.online): лендінги, адмінпанелі, автоматизація та інтеграції. Канбан — окремий продукт, один кейс на сторінці. Англійська версія — [www.burcob.online/en/](https://www.burcob.online/en/).
+Лендінг студії [www.burcob.online](https://www.burcob.online): лендінги, сайти, боти й автоматизація. Ціни — діапазони за ставкою 300 ₴/год, точна сума після брифу. Канбан — власний продукт команди, не клієнтський кейс. Англійська версія — [www.burcob.online/en/](https://www.burcob.online/en/).
 
 Сайт статичний: HTML, CSS і трохи JavaScript. Заявки з форми йдуть у Google Таблицю через вебзастосунок Apps Script. Канонічний домен — `https://www.burcob.online` (`burcob.online` перенаправляє на www).
 
