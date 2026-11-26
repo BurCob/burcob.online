@@ -96,7 +96,6 @@
   initReveal();
   initCatalog();
   initFunnel();
-  initTeamCarousel();
 
   function readCatalog() {
     var order = [];
@@ -644,110 +643,4 @@
     return String(Date.now()) + Math.random().toString(16).slice(2);
   }
 
-  function initTeamCarousel() {
-    var root = document.querySelector("[data-team-carousel]");
-    if (!root) return;
-    var track = root.querySelector("[data-team-track]");
-    var prev = root.querySelector("[data-team-prev]");
-    var next = root.querySelector("[data-team-next]");
-    if (!track || !prev || !next) return;
-
-    var drag = null;
-
-    function reducedMotion() {
-      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    }
-
-    function gapSize() {
-      var styles = window.getComputedStyle(track);
-      var value = parseFloat(styles.columnGap || styles.gap);
-      return isNaN(value) ? 12 : value;
-    }
-
-    function stepSize() {
-      var card = track.querySelector(".person");
-      if (!card) return track.clientWidth || 1;
-      return card.getBoundingClientRect().width + gapSize();
-    }
-
-    function scrollToIndex(index) {
-      var size = stepSize();
-      var max = Math.max(0, track.scrollWidth - track.clientWidth);
-      var left = Math.min(max, Math.max(0, index * size));
-      track.scrollTo({ left: left, behavior: reducedMotion() ? "auto" : "smooth" });
-    }
-
-    function currentIndex() {
-      return Math.round(track.scrollLeft / stepSize());
-    }
-
-    function updateButtons() {
-      var max = track.scrollWidth - track.clientWidth;
-      prev.disabled = track.scrollLeft <= 4;
-      next.disabled = max <= 4 || track.scrollLeft >= max - 4;
-    }
-
-    prev.addEventListener("click", function () {
-      scrollToIndex(currentIndex() - 1);
-    });
-    next.addEventListener("click", function () {
-      scrollToIndex(currentIndex() + 1);
-    });
-
-    track.addEventListener("keydown", function (event) {
-      if (event.target !== track) return;
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        scrollToIndex(currentIndex() + 1);
-      } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        scrollToIndex(currentIndex() - 1);
-      } else if (event.key === "Home") {
-        event.preventDefault();
-        scrollToIndex(0);
-      } else if (event.key === "End") {
-        event.preventDefault();
-        scrollToIndex(track.querySelectorAll(".person").length);
-      }
-    });
-
-    track.addEventListener("pointerdown", function (event) {
-      if (event.pointerType !== "mouse" || event.button !== 0) return;
-      if (event.target.closest("a, button")) return;
-      drag = {
-        pointerId: event.pointerId,
-        startX: event.clientX,
-        startScroll: track.scrollLeft,
-        moved: false
-      };
-      track.classList.add("is-dragging");
-      track.setPointerCapture(event.pointerId);
-    });
-
-    track.addEventListener("pointermove", function (event) {
-      if (!drag || drag.pointerId !== event.pointerId) return;
-      var delta = event.clientX - drag.startX;
-      if (Math.abs(delta) > 4) drag.moved = true;
-      track.scrollLeft = drag.startScroll - delta;
-    });
-
-    function endDrag(event) {
-      if (!drag || (event && drag.pointerId !== event.pointerId)) return;
-      var moved = drag.moved;
-      drag = null;
-      track.classList.remove("is-dragging");
-      if (event && track.hasPointerCapture && track.hasPointerCapture(event.pointerId)) {
-        track.releasePointerCapture(event.pointerId);
-      }
-      if (moved) scrollToIndex(currentIndex());
-      else updateButtons();
-    }
-
-    track.addEventListener("pointerup", endDrag);
-    track.addEventListener("pointercancel", endDrag);
-    track.addEventListener("scroll", updateButtons, { passive: true });
-    window.addEventListener("resize", updateButtons);
-    if (window.ResizeObserver) new ResizeObserver(updateButtons).observe(track);
-    updateButtons();
-  }
 })();
