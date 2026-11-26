@@ -9,15 +9,16 @@
       packageOne: "пакет",
       packageFew: "пакети",
       packageMany: "пакетів",
-      chooseService: "Оберіть послугу",
-      choosePackage: "Оберіть пакет",
-      budgetEmpty: "Бюджет з’явиться після вибору пакета.",
+      chooseService: "Оберіть тип задачі",
+      choosePackage: "Оберіть бюджет",
+      budgetEmpty: "Бюджет з’явиться після вибору діапазону.",
       budgetPrefix: "Бюджет: ",
       termPrefix: "Термін: ",
-      errService: "Оберіть послугу.",
-      errPackage: "Оберіть пакет.",
+      errService: "Оберіть тип задачі.",
+      errPackage: "Оберіть бюджет.",
+      severalRanges: "Кілька діапазонів — оберіть на наступному кроці.",
       errName: "Вкажіть, як до вас звертатися.",
-      errContact: "Вкажіть Telegram, телефон або email.",
+      errContact: "Вкажіть Telegram або телефон.",
       errTask: "Опишіть задачу хоча б одним реченням.",
       errTaskLong: "Скоротіть опис до 2000 символів.",
       errConsent: "Потрібна згода, щоб зв’язатися щодо заявки.",
@@ -43,15 +44,16 @@
       packageOne: "package",
       packageFew: "packages",
       packageMany: "packages",
-      chooseService: "Choose a service",
-      choosePackage: "Choose a package",
-      budgetEmpty: "The budget appears after you choose a package.",
+      chooseService: "Choose a task type",
+      choosePackage: "Choose a budget",
+      budgetEmpty: "The budget appears after you choose a range.",
       budgetPrefix: "Budget: ",
       termPrefix: "Timeline: ",
-      errService: "Choose a service.",
-      errPackage: "Choose a package.",
+      errService: "Choose a task type.",
+      errPackage: "Choose a budget.",
+      severalRanges: "A few ranges — choose on the next step.",
       errName: "Tell us what to call you.",
-      errContact: "Leave a Telegram, phone or email.",
+      errContact: "Leave a Telegram handle or a phone number.",
       errTask: "Describe the task in at least one sentence.",
       errTaskLong: "Shorten the description to 2000 characters.",
       errConsent: "Consent is required so we can contact you about the request.",
@@ -72,23 +74,6 @@
   };
   var lang = document.documentElement.lang === "en" ? "en" : "uk";
   var t = STRINGS[lang];
-  var UNSURE = {
-    name: t.unsureName,
-    packages: [
-      {
-        name: t.unsurePackage,
-        price: t.unsurePrice,
-        usd: "",
-        time: t.unsureTime,
-        summary: t.unsureSummary
-      }
-    ]
-  };
-
-  function packageCountLabel(count) {
-    var word = count === 1 ? t.packageOne : (lang === "uk" && count >= 5 ? t.packageMany : t.packageFew);
-    return count + " " + word;
-  }
 
   var state = {
     step: 1,
@@ -107,6 +92,7 @@
   initNav();
   initLangSwitch();
   initHeader();
+  initReveal();
   initCatalog();
   initFunnel();
   initTeamCarousel();
@@ -130,7 +116,7 @@
     });
     return order.map(function (name) {
       return { name: name, packages: map[name] };
-    }).concat([UNSURE]);
+    });
   }
 
   function serviceByName(name) {
@@ -212,10 +198,35 @@
     var header = document.querySelector(".site-header");
     if (!header) return;
     var onScroll = function () {
-      header.classList.toggle("is-stuck", window.scrollY > 4);
+      header.classList.toggle("is-stuck", window.scrollY > 8);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  function initReveal() {
+    var nodes = document.querySelectorAll(".reveal");
+    if (!nodes.length) return;
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(node) {
+      node.classList.add("is-in");
+    }
+    if (reduced || !("IntersectionObserver" in window)) {
+      nodes.forEach(show);
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        show(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    nodes.forEach(function (node) { observer.observe(node); });
+    document.addEventListener("focusin", function (event) {
+      var block = event.target.closest && event.target.closest(".reveal");
+      if (block) show(block);
+    });
   }
 
   function initCatalog() {
@@ -326,7 +337,7 @@
           value: service.name,
           title: service.name,
           meta: service.packages.length > 1 ? first.price + " " + t.andUp : first.price,
-          text: service.packages.length > 1 ? packageCountLabel(service.packages.length) : t.noPackage
+          text: service.packages.length > 1 ? t.severalRanges : first.time
         };
       }),
       state.service
@@ -609,11 +620,11 @@
 
   function validContact(value) {
     if (value.length < 3 || value.length > 120) return false;
-    if (value.indexOf("@") !== -1 && value.indexOf("t.me/") === -1) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    }
     if (value.charAt(0) === "@") return /^@[A-Za-z0-9_]{3,}$/.test(value);
     if (/t\.me\//i.test(value)) return value.length >= 8;
+    if (value.indexOf("@") !== -1) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
     var digits = value.replace(/\D/g, "");
     if (digits.length >= 7 && /^[+\d()\s-]+$/.test(value)) return true;
     return value.length >= 5;
